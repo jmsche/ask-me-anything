@@ -1,0 +1,30 @@
+{% macro flash_messages() %}
+    {% for type, messages in app.flashes %}
+        {% if type == 'success' %}
+            {% set icon = 'check' %}
+        {% elseif type == 'danger' %}
+            {% set icon = 'ban' %}
+        {% else %}
+            {% set icon = type %}
+        {% endif %}
+        {% for message in messages %}
+            <div class="alert alert-{{ type }} alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <i class="fas fa-fw fa-{{ icon }}"></i>&nbsp;
+                {{ message|raw }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endmacro flash_messages %}
+
+{% macro nav_link(link, label, icon) %}
+    <li class="nav-item {{ is_active_path(link) ? 'active' : '' }}">
+        <a class="nav-link" href="{{ link }}">
+            <i class="fas fa-fw fa-{{ icon }}"></i>
+            {{ label }}
+        </a>
+    </li>
+{% endmacro nav_link %}

@@ -26,3 +26,7 @@ yarn-error.log
 /.php_cs
 /.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
+
+###> leapt/core-bundle ###
+/public/uploads/
+###< leapt/core-bundle ###

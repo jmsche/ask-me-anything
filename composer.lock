@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4fc4e479ed2b0a4931dd5c1731b29a0",
+    "content-hash": "78c21908b4ee4dc65e3ca4e5889fe856",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1619,6 +1619,75 @@
                 }
             ],
             "time": "2020-05-20T16:45:56+00:00"
+        },
+        {
+            "name": "leapt/core-bundle",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leapt/core-bundle.git",
+                "reference": "67a88e237d93cb33f11eb0793b8c02e22d61f9f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leapt/core-bundle/zipball/67a88e237d93cb33f11eb0793b8c02e22d61f9f0",
+                "reference": "67a88e237d93cb33f11eb0793b8c02e22d61f9f0",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": "^2.5",
+                "php": "^7.2",
+                "symfony/form": "^4.4|^5.0",
+                "symfony/framework-bundle": "^4.4|^5.0",
+                "symfony/http-foundation": "^4.4|^5.0",
+                "symfony/http-kernel": "^4.4|^5.0",
+                "symfony/routing": "^4.4|^5.0",
+                "symfony/translation": "^4.4|^5.0",
+                "symfony/twig-bundle": "^4.4|^5.0",
+                "symfony/validator": "^4.4|^5.0",
+                "twig/twig": "^2.9|^3.0"
+            },
+            "require-dev": {
+                "doctrine/data-fixtures": "^1.0",
+                "friendsofphp/php-cs-fixer": "^2.16.1",
+                "fzaninotto/faker": "^1.1",
+                "phpstan/phpstan": "^0.12.4",
+                "symfony/phpunit-bridge": "^4.4|^5.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Leapt\\CoreBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pierre Vanliefland",
+                    "email": "pierre@snowcap.be"
+                },
+                {
+                    "name": "Edwin Hermans",
+                    "email": "edwin@snowcap.be"
+                },
+                {
+                    "name": "Jérôme Poskin",
+                    "email": "jerome@snowcap.be"
+                },
+                {
+                    "name": "Snowcap",
+                    "homepage": "http://www.snowcap.be"
+                }
+            ],
+            "description": "Symfony LeaptCoreBundle",
+            "homepage": "https://github.com/leapt/core-bundle",
+            "keywords": [
+                "utility"
+            ],
+            "time": "2020-01-09T22:31:26+00:00"
         },
         {
             "name": "monolog/monolog",

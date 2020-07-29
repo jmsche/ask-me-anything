@@ -1,0 +1,11 @@
+$enable-responsive-font-sizes: true;
+$custom-file-text: (
+  en: "Browse",
+  fr: "Parcourir",
+);
+
+@import "~bootswatch/dist/cosmo/variables";
+@import '~bootstrap/scss/bootstrap.scss';
+@import "~bootswatch/dist/cosmo/bootswatch";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";

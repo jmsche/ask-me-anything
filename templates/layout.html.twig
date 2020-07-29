@@ -1,12 +1,26 @@
+{% from 'macros.html.twig' import flash_messages %}
+
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block page_title %}Ask Me Anything{% endblock page_title %}</title>
+        {{ encore_entry_link_tags('app') }}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {{ include('navigation.html.twig') }}
+
+        {% block container %}
+            <div class="container">
+                {{ flash_messages() }}
+
+                {% block body %}
+
+                {% endblock body %}
+            </div>
+        {% endblock container %}
+
+        {{ encore_entry_script_tags('app') }}
     </body>
 </html>
