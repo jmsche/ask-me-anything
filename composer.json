@@ -26,13 +26,12 @@
         "twig/twig": "^3.0.4"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16.4",
         "symfony/browser-kit": "^5.1",
         "symfony/css-selector": "^5.1",
         "symfony/debug-bundle": "^5.1",
-        "symfony/monolog-bundle": "^3.0",
         "symfony/phpunit-bridge": "^5.1",
         "symfony/stopwatch": "^5.1",
-        "symfony/twig-bundle": "^5.1",
         "symfony/var-dumper": "^5.1",
         "symfony/web-profiler-bundle": "^5.1"
     },
@@ -57,6 +56,8 @@
         "paragonie/random_compat": "2.*",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php73": "*",
         "symfony/polyfill-php72": "*",
         "symfony/polyfill-php71": "*",
         "symfony/polyfill-php70": "*",
@@ -72,7 +73,19 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "ci": [
+            "bin/console doctrine:schema:validate --ansi",
+            "@phpcpd",
+            "@cs:dry",
+            "@phpstan",
+            "bin/console lint:twig templates --ansi",
+            "bin/console lint:yaml config database/fixtures translations --ansi"
+        ],
+        "cs:dry": "php-cs-fixer fix --diff --diff-format=udiff --dry-run --no-interaction --ansi",
+        "cs:fix": "php-cs-fixer fix --ansi",
+        "phpcpd": "phpcpd src tests --ansi",
+        "phpstan": "vendor/bin/phpstan analyse --ansi"
     },
     "conflict": {
         "symfony/symfony": "*"
