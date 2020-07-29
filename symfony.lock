@@ -156,6 +156,24 @@
     "php-cs-fixer/diff": {
         "version": "v1.3.0"
     },
+    "phpstan/extension-installer": {
+        "version": "1.0.4"
+    },
+    "phpstan/phpstan": {
+        "version": "0.12.33"
+    },
+    "phpstan/phpstan-deprecation-rules": {
+        "version": "0.12.5"
+    },
+    "phpstan/phpstan-doctrine": {
+        "version": "0.12.19"
+    },
+    "phpstan/phpstan-phpunit": {
+        "version": "0.12.13"
+    },
+    "phpstan/phpstan-symfony": {
+        "version": "0.12.7"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },

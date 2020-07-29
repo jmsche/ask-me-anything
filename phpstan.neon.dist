@@ -1,0 +1,10 @@
+parameters:
+    bootstrapFiles:
+        - bin/.phpunit/phpunit-9.2-0/vendor/autoload.php
+    paths:
+        - database/migrations
+        - src
+        - tests
+    level: 1
+    symfony:
+        container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
