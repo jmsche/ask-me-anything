@@ -1,1 +1,25 @@
 {% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    <form method="GET" action="#">
+        <div class="input-group mb-5">
+            <input type="text" class="form-control" placeholder="Vos termes de recherche" aria-label="Vos termes de recherche" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Rechercher</button>
+            </div>
+        </div>
+    </form>
+
+    <h1 class="mb-5 text-center">Ask Me Anything</h1>
+
+    <h3 class="text-center">
+        {% for category in categories %}
+            <a class="badge badge-dark mr-1 ml-1 rounded" href="#">
+                <i class="fas fa-fw fa-{{ category.icon }}"></i>
+                {{ category.name }}
+            </a>
+        {% endfor %}
+    </h3>
+
+{% endblock body %}
