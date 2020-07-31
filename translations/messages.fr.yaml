@@ -1,0 +1,10 @@
+login:
+    title: Connexion
+    username: Nom d'utilisateur
+    password: Mot de passe
+    remember_me: Rester connecté(e)
+    submit: Connexion
+
+navigation:
+    login: Connexion
+    logout: Déconnexion [%username%]

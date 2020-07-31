@@ -16,9 +16,13 @@
 
             <ul class="navbar-nav ml-auto mr-md-0">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ path(is_granted('ROLE_ADMIN') ? 'app_security_logout' : 'app_security_login') }}" class="nav-link">
                         <i class="fas fa-fw fa-key"></i>
-                        Connexion
+                        {% if is_granted('ROLE_ADMIN') %}
+                            {{ 'navigation.logout'|trans({ '%username%': app.user.username }) }}
+                        {% else %}
+                            {{ 'navigation.login'|trans }}
+                        {% endif %}
                     </a>
                 </li>
             </ul>

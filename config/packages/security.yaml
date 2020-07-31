@@ -1,4 +1,7 @@
 security:
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+
     encoders:
         App\Entity\User:
             algorithm: auto
@@ -18,12 +21,17 @@ security:
             anonymous: true
             lazy: true
             provider: app_user_provider
-
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#firewalls-authentication
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+            guard:
+                authenticators:
+                    - App\Security\AppAuthenticator
+            logout:
+                path: app_security_logout
+                # where to redirect after logout
+                #target: app_default_index
+            remember_me:
+                secret:   '%env(APP_SECRET)%'
+                lifetime: 31536000 # 1 year in seconds
+                path:     /
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

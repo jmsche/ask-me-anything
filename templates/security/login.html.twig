@@ -1,0 +1,40 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header text-center">
+            {{ 'login.title'|trans }}
+        </div>
+        <div class="card-body">
+            {% if error %}
+                <div class="alert alert-danger">
+                    <i class="fas fa-ban fa-fw"></i>
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form action="{{ path('app_security_login') }}" method="post">
+                <div class="form-group">
+                    <label for="inputUsername">{{ 'login.username'|trans }}</label>
+                    <input type="text" class="form-control" id="inputUsername" required autofocus value="{{ last_username }}" name="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword">{{ 'login.password'|trans }}</label>
+                    <input type="password" class="form-control" id="inputPassword" required name="password">
+                </div>
+
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe" name="_remember_me">
+                    <label class="form-check-label" for="rememberMe">{{ 'login.remember_me'|trans }}</label>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button type="submit" class="btn btn-primary btn-block" name="_login">
+                    {{ 'login.submit'|trans }}
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock body %}

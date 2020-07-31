@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Traits\PrimaryKeyTrait;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -14,15 +15,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User implements UserInterface
 {
+    use PrimaryKeyTrait;
+
     private const ROLE_ADMIN = 'ROLE_ADMIN';
     private const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
-
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private int $id;
 
     /**
      * @ORM\Column(type="string", length=30, unique=true)

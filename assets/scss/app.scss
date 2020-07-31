@@ -9,3 +9,9 @@ $custom-file-text: (
 @import "~bootswatch/dist/cosmo/bootswatch";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
+
+.navbar {
+  + .container {
+    margin-top: 80px;
+  }
+}
