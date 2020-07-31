@@ -1,0 +1,5 @@
+App\Entity\Step:
+    step__{1..100}:
+        __construct: ['@tutorial__*']
+        content: 50%? <paragraph()>
+        weight: <numberBetween(1, 30)>

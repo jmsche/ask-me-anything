@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Traits\CreatedOnTrait;
 use App\Entity\Traits\PrimaryKeyTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ContactMessage
 {
     use PrimaryKeyTrait;
+    use CreatedOnTrait;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -32,11 +34,6 @@ class ContactMessage
      * @ORM\Column(name="`read`", type="boolean")
      */
     private bool $read = false;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private \DateTime $createdOn;
 
     public function __construct()
     {
@@ -71,10 +68,5 @@ class ContactMessage
     public function setRead(bool $read): void
     {
         $this->read = $read;
-    }
-
-    public function getCreatedOn(): \DateTime
-    {
-        return $this->createdOn;
     }
 }

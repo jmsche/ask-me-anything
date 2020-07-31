@@ -1,0 +1,7 @@
+App\Entity\Tutorial:
+    tutorial__{1..20}:
+        name: <company()>
+        description: 50%? <paragraph()>
+        category: '@category__*'
+        locked: <boolean()>
+        visible: <boolean()>

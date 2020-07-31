@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Traits\CreatedOnTrait;
 use App\Entity\Traits\PrimaryKeyTrait;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,11 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Log
 {
     use PrimaryKeyTrait;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private \DateTime $createdOn;
+    use CreatedOnTrait;
 
     /**
      * @ORM\Column(type="string")
@@ -46,11 +43,6 @@ class Log
         $this->userAgent = $userAgent;
         $this->url = $url;
         $this->label = $label;
-    }
-
-    public function getCreatedOn(): \DateTime
-    {
-        return $this->createdOn;
     }
 
     public function getIpAddress(): string
