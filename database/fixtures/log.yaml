@@ -1,0 +1,3 @@
+App\Entity\Log:
+    log__{1..50}:
+        __construct: [<ipv4()>, <userAgent()>, '/', 'Page au pif']

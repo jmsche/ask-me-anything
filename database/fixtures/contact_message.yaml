@@ -1,0 +1,5 @@
+App\Entity\ContactMessage:
+    contact_message__{1..10}:
+        author: <firstName()> <lastName()>
+        content: <paragraph()>
+        read: <boolean()>

@@ -1,0 +1,30 @@
+App\Entity\Category:
+    category__internet:
+        name: Internet
+        slug: internet
+        icon: wifi
+
+    category__tv:
+        name: TV
+        slug: tv
+        icon: tv
+
+    category__mobile:
+        name: Mobile
+        slug: mobile
+        icon: mobile-alt
+
+    category__email:
+        name: Email
+        slug: email
+        icon: at
+
+    category__voip:
+        name: Voip
+        slug: voip
+        icon: phone
+
+    category__autres:
+        name: Autres
+        slug: autres
+        icon: random
