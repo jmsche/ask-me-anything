@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Traits\PrimaryKeyTrait;
+use App\Entity\Traits\WeightTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -17,6 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Category
 {
     use PrimaryKeyTrait;
+    use WeightTrait;
 
     /**
      * @ORM\Column(type="string", length=40)

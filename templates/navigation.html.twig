@@ -12,6 +12,9 @@
 
         <div class="collapse navbar-collapse" id="user-nav">
             <ul class="navbar-nav mr-auto">
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    {{ nav_link(path('app_category_index'), 'category.navigation_label'|trans, 'folder-open') }}
+                {% endif %}
             </ul>
 
             <ul class="navbar-nav ml-auto mr-md-0">

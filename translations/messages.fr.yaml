@@ -1,3 +1,11 @@
+category:
+    navigation_label: Catégories
+    field:
+        name: Nom
+        slug: Slug
+        weight: Poids
+        icon: Icône FontAwesome (solid, sans le fa-)
+
 login:
     title: Connexion
     username: Nom d'utilisateur
@@ -8,3 +16,11 @@ login:
 navigation:
     login: Connexion
     logout: Déconnexion [%username%]
+
+slug_type:
+    help: Correspond à ce qui sera présent dans l'URL. Ne doit contenir que des lettres minuscules sans accent, chiffres et tirets. Par exemple, "Bienvenue chez nous !" devient "bienvenue-chez-nous".
+    modal:
+        title: Attention
+        message: Si vous modifiez le slug, vous pouvez casser des liens sur d'autres pages.
+        cancel: Annuler
+        ok: Modifier

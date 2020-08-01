@@ -1,0 +1,31 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    <h1 class="mb-4">Créer une catégorie</h1>
+
+    {{ form_start(form, { 'attr': { 'novalidate': 'novalidate' } }) }}
+        <div class="row">
+            {{ form_row(form.name, { 'row_attr': { 'class': 'col-6' } }) }}
+            {{ form_row(form.slug, { 'row_attr': { 'class': 'col-6' } }) }}
+        </div>
+
+        <div class="row">
+            {{ form_row(form.icon, { 'row_attr': { 'class': 'col-6' } }) }}
+            {{ form_row(form.weight, { 'row_attr': { 'class': 'col-6' } }) }}
+        </div>
+
+        <p>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-fw fa-check"></i>
+                Sauvegarder
+            </button>
+
+            <a href="{{ path('app_category_index') }}" class="btn btn-secondary">
+                <i class="fas fa-fw fa-arrow-left"></i>
+                Retourner à la liste
+            </a>
+        </p>
+    {{ form_end(form) }}
+
+{% endblock body %}

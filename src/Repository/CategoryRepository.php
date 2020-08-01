@@ -18,6 +18,7 @@ final class CategoryRepository extends ServiceEntityRepository
     public function findAll(): array
     {
         return $this->createQueryBuilder('c')
+            ->orderBy('c.weight', 'ASC')
             ->getQuery()->getResult();
     }
 }

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Traits\PrimaryKeyTrait;
+use App\Entity\Traits\WeightTrait;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Step
 {
     use PrimaryKeyTrait;
+    use WeightTrait;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -25,12 +26,6 @@ class Step
      * @ORM\JoinColumn(nullable=false)
      */
     private Tutorial $tutorial;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
-     */
-    private ?int $weight = 1;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -55,16 +50,6 @@ class Step
     public function getTutorial(): Tutorial
     {
         return $this->tutorial;
-    }
-
-    public function getWeight(): ?int
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(?int $weight): void
-    {
-        $this->weight = $weight;
     }
 
     public function getFile(): ?string

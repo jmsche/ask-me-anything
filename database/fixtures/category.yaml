@@ -3,28 +3,34 @@ App\Entity\Category:
         name: Internet
         slug: internet
         icon: wifi
+        weight: 1
 
     category__tv:
         name: TV
         slug: tv
         icon: tv
+        weight: 2
 
     category__mobile:
         name: Mobile
         slug: mobile
         icon: mobile-alt
+        weight: 3
 
     category__email:
         name: Email
         slug: email
         icon: at
+        weight: 4
 
     category__voip:
         name: Voip
         slug: voip
         icon: phone
+        weight: 5
 
     category__autres:
         name: Autres
         slug: autres
         icon: random
+        weight: 6
