@@ -36,6 +36,20 @@ final class TutorialRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function search(string $query): array
+    {
+        $qb = $this->createQueryBuilder('t')
+            ->where('t.name LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->orderBy('t.name', 'ASC');
+
+        if (!$this->authorizationChecker->isGranted('ROLE_SUPER_ADMIN')) {
+            $qb->andWhere('t.visible = 1');
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function save(Tutorial $tutorial): void
     {
         $this->getEntityManager()->persist($tutorial);

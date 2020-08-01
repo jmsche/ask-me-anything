@@ -1,6 +1,8 @@
-<form method="GET" action="#">
+<form method="GET" action="{{ path('app_default_search') }}">
     <div class="input-group mb-5">
-        <input type="text" class="form-control" placeholder="{{ 'search.form.placeholder'|trans }}" aria-label="{{ 'search.form.placeholder'|trans }}" aria-describedby="button-addon2">
+        <input type="text" class="form-control" name="q"
+           placeholder="{{ 'search.form.placeholder'|trans }}" aria-label="{{ 'search.form.placeholder'|trans }}"
+           aria-describedby="button-addon2" value="{{ query is defined and query is not empty ? query : '' }}">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">{{ 'search.form.submit'|trans }}</button>
         </div>

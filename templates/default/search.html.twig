@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    <h1 class="mb-4 text-center">{{ 'search.title'|trans }}</h1>
+
+    {{ include('_search_form.html.twig') }}
+
+    {% if tutorials|length > 0 %}
+        {{ include('_tutorials_list.html.twig') }}
+    {% elseif query is empty %}
+        <div class="alert alert-warning">{{ 'search.no_query'|trans }}</div>
+    {% else %}
+        <div class="alert alert-info">{{ 'search.no_results'|trans }}</div>
+    {% endif %}
+
+{% endblock body %}

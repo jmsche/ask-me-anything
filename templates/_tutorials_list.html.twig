@@ -1,0 +1,16 @@
+<div class="card-columns">
+    {% for tutorial in tutorials %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="#">
+                        {% if tutorial.locked %}<i class="fas fa-fw fa-check"></i>{% endif %}
+                        {{ tutorial.name }}
+                    </a>
+                </h5>
+                <p class="card-text">{{ tutorial.description }}</p>
+                <p class="card-text"><small class="text-muted">{{ tutorial.createdOn|date('d/m/Y') }}</small></p>
+            </div>
+        </div>
+    {% endfor %}
+</div>

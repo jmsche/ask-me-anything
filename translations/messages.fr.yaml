@@ -50,6 +50,9 @@ navigation:
     logout: Déconnexion [%username%]
 
 search:
+    title: Recherche
+    no_query: Veuillez entrer un ou plusieurs termes de recherche.
+    no_results: Aucun tutoriel ne correspond à vos termes de recherche.
     form:
         placeholder: Vos termes de recherche
         submit: Rechercher
