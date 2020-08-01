@@ -6,6 +6,8 @@ namespace App\Entity;
 
 use App\Entity\Traits\CreatedOnTrait;
 use App\Entity\Traits\PrimaryKeyTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -46,9 +48,16 @@ class Tutorial
      */
     private bool $visible = true;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Step::class, mappedBy="tutorial")
+     * @ORM\OrderBy({ "weight" = "ASC" })
+     */
+    private Collection $steps;
+
     public function __construct()
     {
         $this->createdOn = new \DateTime();
+        $this->steps = new ArrayCollection();
     }
 
     public function getName(): ?string
@@ -99,5 +108,28 @@ class Tutorial
     public function setVisible(bool $visible): void
     {
         $this->visible = $visible;
+    }
+
+    public function getSteps(): Collection
+    {
+        return $this->steps;
+    }
+
+    public function getFirstStep(): ?Step
+    {
+        if (0 < $this->steps->count()) {
+            return $this->steps->first();
+        }
+
+        return null;
+    }
+
+    public function getLastStep(): ?Step
+    {
+        if (0 < $this->steps->count()) {
+            return $this->steps->last();
+        }
+
+        return null;
     }
 }

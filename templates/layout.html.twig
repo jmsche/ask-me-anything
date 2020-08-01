@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block page_title %}Ask Me Anything{% endblock page_title %}</title>
         {{ encore_entry_link_tags('app') }}
+        {% block extra_stylesheets %}{% endblock extra_stylesheets %}
         <link rel="icon" href="{{ asset('favicon.ico') }}">
     </head>
     <body>
@@ -23,5 +24,6 @@
         {% endblock container %}
 
         {{ encore_entry_script_tags('app') }}
+        {% block extra_javascript %}{% endblock extra_javascript %}
     </body>
 </html>

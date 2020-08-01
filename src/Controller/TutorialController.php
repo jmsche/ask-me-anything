@@ -30,16 +30,24 @@ final class TutorialController extends AbstractController
     }
 
     /**
-     * @Route("/view/{id}", name="view")
+     * @Route("/view/{id}/{stepNumber}", name="view", defaults={"stepNumber" = 1})
      */
-    public function view(Request $request, Tutorial $tutorial): Response
+    public function view(Request $request, Tutorial $tutorial, int $stepNumber): Response
     {
         if (!$tutorial->isVisible() && !$this->isGranted('ROLE_SUPER_ADMIN')) {
             throw $this->createNotFoundException('Tutorial is supposed to be invisible.');
         }
 
+        if (1 !== $stepNumber && (0 > $stepNumber || $tutorial->getSteps()->count() < $stepNumber)) {
+            throw $this->createNotFoundException('Invalid step number.');
+        }
+
+        $step = $tutorial->getSteps()->get($stepNumber - 1);
+
         return $this->render('tutorial/view.html.twig', [
             'tutorial'      => $tutorial,
+            'step_number'   => $stepNumber,
+            'step'          => $step,
             'from_search'   => $request->query->get('fromSearch'),
             'from_category' => $request->query->get('fromCategory'),
         ]);
@@ -119,7 +127,7 @@ final class TutorialController extends AbstractController
                 $this->tutorialRepository->delete($tutorial);
 
                 $this->sessionHelper->addFlash('success', 'tutorial.delete.flash_success', ['%name%' => $result['entity_name']]);
-                $redirectUrl = $request->headers->get('referer');
+                $redirectUrl = $this->generateUrl('app_default_index');
 
                 return $this->json(['result' => $result, 'redirect_url' => $redirectUrl], 301);
             } catch (\Exception $e) {

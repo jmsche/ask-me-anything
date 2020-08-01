@@ -22,8 +22,8 @@ class Step
     private ?string $content = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Tutorial::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Tutorial::class, inversedBy="steps")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private Tutorial $tutorial;
 

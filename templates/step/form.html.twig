@@ -1,0 +1,10 @@
+{{ form_start(form, { 'attr': { 'novalidate': 'novalidate' } }) }}
+    {{ form_row(form.content) }}
+
+    <p>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-fw fa-check"></i>
+            {{ 'content.save'|trans }}
+        </button>
+    </p>
+{{ form_end(form) }}

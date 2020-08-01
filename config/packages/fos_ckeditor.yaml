@@ -1,0 +1,36 @@
+fos_ck_editor:
+    configs:
+        step:
+            toolbar: 'step'
+            extraPlugins: 'image2,codesnippet'
+            height: 400
+            allowedContent: true
+            codeSnippet_languages:
+                apache: Apache
+                bash: Bash
+                css: CSS
+                diff: Diff
+                xml: HTML/XML
+                javascript: JavaScript
+                json: JSON
+                nginx: nginx
+                php: PHP
+                plaintext: Plain text
+                scss: SCSS
+                sql: SQL
+                twig: Twig
+                yaml: YAML
+    toolbars:
+        configs:
+            step:
+                - ['Source', 'Format']
+                - '@standard.links'
+                - '@standard.insert'
+                - '@full.tools'
+                - ['CodeSnippet']
+                - '/'
+                - '@full.basic_styles'
+                - '@standard.paragraph'
+                - '@justify'
+        items:
+            justify: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
