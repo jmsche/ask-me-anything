@@ -1,0 +1,16 @@
+image: node:14.7-alpine
+
+cache:
+  paths:
+  - node_modules/
+
+before_script:
+  - yarn install
+
+build:
+  script:
+  - ./node_modules/.bin/encore production
+  artifacts:
+    name: "assets"
+    paths:
+    - public/build/

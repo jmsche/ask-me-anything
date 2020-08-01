@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Maintenance</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+            * {
+                font-size: 24px;
+                font-family: Lato, sans-serif;
+                font-weight: 300;
+            }
+            #content {
+                padding-top: 70px;
+                text-align: center;
+            }
+            p {
+                max-width: 400px;
+                margin: auto;
+            }
+            p.lower {
+                margin-top: 15px;
+                font-size: 18px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="content">
+            <p>Une mise à jour du site est en cours.<br />Il devrait être de retour sous peu.</p>
+            <p class="lower">Vous serez automatiquement redirigé&middot;e.</p>
+        </div>
+
+        <script>
+            window.onload = function() {
+                setTimeout("window.location.reload()", 3000);
+            };
+        </script>
+    </body>
+</html>
