@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+{% do add_active_path(path('app_contact_index')) %}
+
+{% block body %}
+
+    <h1 class="mb-4">{{ 'contact.view.title'|trans }}</h1>
+
+    <p>
+        <strong>{{ 'contact.view.author'|trans }}</strong>
+        {{ message.author }}
+    </p>
+
+    <p>
+        <strong>{{ 'contact.view.created_on'|trans }}</strong>
+        {{ message.createdOn|date('d/m/Y H:i') }}
+    </p>
+
+    <p>
+        <strong>{{ 'contact.view.content'|trans }}</strong><br />
+        {{ message.content|nl2br }}
+    </p>
+
+    <p>
+        <a href="{{ path('app_contact_index') }}" class="btn btn-secondary">
+            <i class="fas fa-fw fa-arrow-left"></i>
+            {{ 'content.back_to_list'|trans }}
+        </a>
+    </p>
+
+{% endblock body %}

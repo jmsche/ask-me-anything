@@ -17,6 +17,30 @@ category:
     view:
         no_tutorials: Aucun tutoriel n'est disponible dans cette catégorie.
 
+contact:
+    navigation_label: Contact
+    index:
+        status:
+            label: Statut
+            read: Lu
+            unread: Non lu
+        author: Auteur
+        created_on: Date
+    create:
+        title: Contacter l'administrateur
+        author: Mon nom
+        content: Tutoriel dont j'aurais besoin, communication générale, etc.
+        submit: Envoyer
+        flash_success: Votre message a été envoyé avec succès.
+    delete:
+        description: Message de %name% en date du %date% à %time%.
+        flash_success: Le message de <strong>%name%</strong> a été supprimé avec succès.
+    view:
+        title: Consultation d'un message envoyé
+        author: 'Auteur :'
+        created_on: "Date d'envoi :"
+        content: 'Message :'
+
 content:
     save: Sauvegarder
     back_to_list: Retourner à la liste
@@ -36,6 +60,7 @@ datalist:
         update: Modifier
         delete: Supprimer
         create: Nouveau
+        view: Voir
     no_items: Aucun élément n'est enregistré.
 
 login:
