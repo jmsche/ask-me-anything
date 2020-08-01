@@ -61,3 +61,24 @@ slug_type:
         message: Si vous modifiez le slug, vous pouvez casser des liens sur d'autres pages.
         cancel: Annuler
         ok: Modifier
+
+user:
+    navigation_label: Utilisateurs
+    choices:
+        role:
+            ROLE_ADMIN: Administrateur
+            ROLE_SUPER_ADMIN: Super administrateur
+    field:
+        username: Nom d'utilisateur
+        role: Rôle
+        password: Mot de passe
+    help:
+        password: Obligatoire si c'est un nouvel utilisateur.
+    create:
+        title: Créer un utilisateur
+        flash_success: L'utilisateur <strong>%name%</strong> a été créé avec succès.
+    update:
+        title: Modifier un utilisateur
+        flash_success: L'utilisateur <strong>%name%</strong> a été modifié avec succès.
+    delete:
+        flash_success: L'utilisateur <strong>%name%</strong> a été supprimé avec succès.

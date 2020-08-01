@@ -13,7 +13,7 @@ trait PrimaryKeyTrait
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected ?int $id;
+    protected ?int $id = null;
 
     public function getId(): ?int
     {

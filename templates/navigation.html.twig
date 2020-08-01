@@ -14,6 +14,7 @@
             <ul class="navbar-nav mr-auto">
                 {% if is_granted('ROLE_SUPER_ADMIN') %}
                     {{ nav_link(path('app_category_index'), 'category.navigation_label'|trans, 'folder-open') }}
+                    {{ nav_link(path('app_user_index'), 'user.navigation_label'|trans, 'user') }}
                 {% endif %}
             </ul>
 

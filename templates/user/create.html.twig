@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+{% do add_active_path(path('app_user_index')) %}
+
+{% block body %}
+
+    <h1 class="mb-4">{{ 'user.create.title'|trans }}</h1>
+
+    {{ include('user/form.html.twig') }}
+
+{% endblock body %}

@@ -39,6 +39,11 @@ class User implements UserInterface
      */
     private ?string $password = null;
 
+    /**
+     * @Assert\NotBlank(groups={"Create"})
+     */
+    private ?string $plainPassword = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,7 +54,7 @@ class User implements UserInterface
         return (string) $this->username;
     }
 
-    public function setUsername(string $username): self
+    public function setUsername(?string $username): self
     {
         $this->username = $username;
 
@@ -91,6 +96,16 @@ class User implements UserInterface
         ];
     }
 
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(?string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
     public function getSalt()
     {
         // not needed when using the "bcrypt" algorithm in security.yaml
@@ -99,6 +114,6 @@ class User implements UserInterface
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 }
