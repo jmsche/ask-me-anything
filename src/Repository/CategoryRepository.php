@@ -21,4 +21,16 @@ final class CategoryRepository extends ServiceEntityRepository
             ->orderBy('c.weight', 'ASC')
             ->getQuery()->getResult();
     }
+
+    public function save(Category $category): void
+    {
+        $this->getEntityManager()->persist($category);
+        $this->getEntityManager()->flush();
+    }
+
+    public function delete(Category $category): void
+    {
+        $this->getEntityManager()->remove($category);
+        $this->getEntityManager()->flush();
+    }
 }

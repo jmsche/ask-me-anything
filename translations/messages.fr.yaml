@@ -5,6 +5,36 @@ category:
         slug: Slug
         weight: Poids
         icon: Icône FontAwesome (solid, sans le fa-)
+        icon_short: Icône
+    create:
+        title: Créer une catégorie
+        flash_success: La catégorie <strong>%name%</strong> a été créée avec succès.
+    update:
+        title: Modifier une catégorie
+        flash_success: La catégorie <strong>%name%</strong> a été modifiée avec succès.
+    delete:
+        flash_success: La catégorie <strong>%name%</strong> a été supprimée avec succès.
+
+content:
+    save: Sauvegarder
+    back_to_list: Retourner à la liste
+    delete:
+        title: Confirmation de suppression
+        body:
+            alert: Assurez-vous que ce contenu n'est plus utilisé avant de l'effacer. Cette opération détruira les données de façon permanente.
+            content: 'Cette action supprimera définitivement le contenu suivant :'
+        cancel: Annuler
+        confirm: Supprimer
+        flash:
+            error: Le contenu n'a pas pu être supprimé.
+
+datalist:
+    actions:
+        label: Actions
+        update: Modifier
+        delete: Supprimer
+        create: Nouveau
+    no_items: Aucun élément n'est enregistré.
 
 login:
     title: Connexion

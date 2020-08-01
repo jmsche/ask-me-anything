@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
+use App\Helper\SessionHelper;
 use App\Repository\CategoryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,9 +21,12 @@ final class CategoryController extends AbstractController
 {
     private CategoryRepository $categoryRepository;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    private SessionHelper $sessionHelper;
+
+    public function __construct(CategoryRepository $categoryRepository, SessionHelper $sessionHelper)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->sessionHelper = $sessionHelper;
     }
 
     /**
@@ -58,7 +62,10 @@ final class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->categoryRepository->save($category);
+            $this->sessionHelper->addFlash('success', 'category.create.flash_success', ['%name%' => $category->getName()]);
 
+            return $this->redirectToRoute('app_category_index');
         }
 
         return $this->render('category/create.html.twig', [
@@ -70,17 +77,54 @@ final class CategoryController extends AbstractController
      * @Route("/update/{id}", name="update")
      * @IsGranted("ROLE_SUPER_ADMIN")
      */
-    public function update(Category $category): Response
+    public function update(Request $request, Category $category): Response
     {
-        return $this->render('category/update.html.twig');
+        $form = $this->createForm(CategoryType::class, $category, [
+            'method' => 'POST',
+            'action' => $this->generateUrl('app_category_update', ['id' => $category->getId()]),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->categoryRepository->save($category);
+            $this->sessionHelper->addFlash('success', 'category.update.flash_success', ['%name%' => $category->getName()]);
+
+            return $this->redirectToRoute('app_category_index');
+        }
+
+        return $this->render('category/update.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
      * @Route("/delete/{id}", name="delete")
      * @IsGranted("ROLE_SUPER_ADMIN")
      */
-    public function delete(Category $category): Response
+    public function delete(Request $request, Category $category): Response
     {
-        return $this->render('category/delete.html.twig');
+        $status = 200;
+
+        if ($request->isMethod('delete')) {
+            try {
+                $result = [
+                    'entity_id'   => $category->getId(),
+                    'entity_name' => $category->getName(),
+                ];
+                $this->categoryRepository->delete($category);
+
+                $this->sessionHelper->addFlash('success', 'category.delete.flash_success', ['%name%' => $result['entity_name']]);
+                $redirectUrl = $request->headers->get('referer');
+
+                return $this->json(['result' => $result, 'redirect_url' => $redirectUrl], 301);
+            } catch (\Exception $e) {
+                $status = 400;
+                $this->sessionHelper->addFlash('danger', 'content.delete.flash.error');
+            }
+        }
+
+        return $this->json(['content' => $this->renderView('category/delete.html.twig', [
+            'category' => $category,
+        ])], $status);
     }
 }
