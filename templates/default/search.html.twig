@@ -7,7 +7,7 @@
     {{ include('_search_form.html.twig') }}
 
     {% if tutorials|length > 0 %}
-        {{ include('_tutorials_list.html.twig') }}
+        {{ include('_tutorials_list.html.twig', { 'from_search': query }) }}
     {% elseif query is empty %}
         <div class="alert alert-warning">{{ 'search.no_query'|trans }}</div>
     {% else %}

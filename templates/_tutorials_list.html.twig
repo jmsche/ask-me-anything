@@ -1,9 +1,16 @@
+{% set path_params = {} %}
+{% if from_category is defined and from_category is not empty %}
+    {% set path_params = { 'fromCategory': from_category } %}
+{% elseif from_search is defined and from_search is not empty %}
+    {% set path_params = { 'fromSearch': from_search } %}
+{% endif %}
+
 <div class="card-columns">
     {% for tutorial in tutorials %}
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">
-                    <a href="#">
+                    <a href="{{ path('app_tutorial_view', { 'id': tutorial.id }|merge(path_params)) }}">
                         {% if tutorial.locked %}<i class="fas fa-fw fa-check"></i>{% endif %}
                         {{ tutorial.name }}
                     </a>

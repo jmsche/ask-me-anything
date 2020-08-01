@@ -14,7 +14,7 @@
     </h3>
 
     {% if tutorials|length > 0 %}
-        {{ include('_tutorials_list.html.twig') }}
+        {{ include('_tutorials_list.html.twig', { 'from_category': category.slug }) }}
     {% else %}
         <div class="alert alert-info">{{ 'category.view.no_tutorials'|trans }}</div>
     {% endif %}

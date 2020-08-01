@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    <p>
+        {% if from_search is not empty %}
+            <a href="{{ path('app_default_search', { 'q': from_search }) }}" class="btn btn-secondary">
+                <i class="fas fa-fw fa-arrow-left"></i>
+                {{ from_search }}
+            </a>
+        {% elseif from_category is not empty %}
+            <a href="{{ path('app_category_view', { 'slug': from_category }) }}" class="btn btn-secondary">
+                <i class="fas fa-fw fa-arrow-left"></i>
+                {{ tutorial.category.name }}
+            </a>
+        {% endif %}
+    </p>
+
+    <h1 class="text-center mb-4">{{ tutorial.name }}</h1>
+
+{% endblock body %}
