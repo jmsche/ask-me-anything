@@ -16,7 +16,9 @@
                     {{ nav_link(path('app_category_index'), 'category.navigation_label'|trans, 'folder-open') }}
                     {{ nav_link(path('app_user_index'), 'user.navigation_label'|trans, 'user') }}
                     {{ nav_link(path('app_contact_index'), 'contact.navigation_label'|trans, 'envelope') }}
+                    {{ nav_link(path('app_tutorial_create'), 'tutorial.create.navigation_label'|trans, 'file-signature') }}
                 {% elseif is_granted('ROLE_ADMIN') %}
+                    {{ nav_link(path('app_tutorial_create'), 'tutorial.create.navigation_label'|trans, 'file-signature') }}
                 {% else %}
                     {{ nav_link(path('app_contact_create'), 'contact.navigation_label'|trans, 'envelope') }}
                 {% endif %}

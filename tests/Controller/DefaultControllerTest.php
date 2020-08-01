@@ -11,4 +11,10 @@ final class DefaultControllerTest extends AbstractControllerTest
         static::$client->request('GET', '/');
         static::assertResponseIsSuccessful();
     }
+
+    public function testSearch(): void
+    {
+        static::$client->request('GET', '/search?q=test');
+        static::assertResponseIsSuccessful();
+    }
 }

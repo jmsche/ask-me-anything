@@ -1,0 +1,15 @@
+{{ form_start(form, { 'attr': { 'novalidate': 'novalidate' } }) }}
+    <div class="row">
+        {{ form_row(form.name, { 'row_attr': { 'class': 'col-6' } }) }}
+        {{ form_row(form.category, { 'row_attr': { 'class': 'col-6' } }) }}
+    </div>
+
+    {{ form_row(form.description, { 'attr': { 'rows': 6 } }) }}
+
+    <p>
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-fw fa-check"></i>
+            {{ 'content.save'|trans }}
+        </button>
+    </p>
+{{ form_end(form) }}

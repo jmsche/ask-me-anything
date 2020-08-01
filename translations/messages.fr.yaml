@@ -90,6 +90,25 @@ slug_type:
         cancel: Annuler
         ok: Modifier
 
+tutorial:
+    create:
+        navigation_label: Créer un tutoriel
+        title: Créer un tutoriel
+        flash_success: Le tutoriel <strong>%name%</strong> a été créé avec succès.
+    update:
+        title: Modifier un tutoriel
+        flash_success: Le tutoriel <strong>%name%</strong> a été modifié avec succès.
+    delete:
+        flash_success: Le tutoriel <strong>%name%</strong> a été supprimé avec succès.
+    field:
+        name: Nom
+        description: Description
+        category: Catégorie
+    view:
+        locked: Verrouillé
+        unlocked: Ouvert
+        invisible: Invisible
+
 user:
     navigation_label: Utilisateurs
     choices:

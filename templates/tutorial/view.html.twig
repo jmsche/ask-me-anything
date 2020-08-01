@@ -14,8 +14,34 @@
                 {{ tutorial.category.name }}
             </a>
         {% endif %}
+
+        {% if is_granted('ROLE_SUPER_ADMIN') or (is_granted('ROLE_ADMIN') and not tutorial.locked) %}
+            <a href="{{ path('app_tutorial_delete', { 'id': tutorial.id }) }}" class="btn btn-danger float-right mr-1" data-bootstrap="modal">
+                <i class="fas fa-fw fa-trash"></i>
+                {{ 'datalist.actions.delete'|trans }}
+            </a>
+            <a href="{{ path('app_tutorial_update', { 'id': tutorial.id }) }}" class="btn btn-secondary float-right mr-1">
+                <i class="fas fa-fw fa-pencil-alt"></i>
+                {{ 'datalist.actions.update'|trans }}
+            </a>
+        {% endif %}
+    </p>
+
+    <p class="text-right">
+        <span class="badge badge-secondary tutorial-big-badges">
+            <i class="fas fa-fw fa-lock{{ not tutorial.locked ? '-open' }}"></i>
+            {{ "tutorial.view.#{tutorial.locked ? 'locked' : 'unlocked'}"|trans }}
+        </span>
+
+        {% if not tutorial.visible %}
+            <span class="badge badge-secondary mr-1 tutorial-big-badges">
+                <i class="fas fa-fw fa-eye-slash"></i>
+                {{ 'tutorial.view.invisible'|trans }}
+            </span>
+        {% endif %}
     </p>
 
     <h1 class="text-center mb-4">{{ tutorial.name }}</h1>
+    <p class="text-center">{{ tutorial.description }}</p>
 
 {% endblock body %}
