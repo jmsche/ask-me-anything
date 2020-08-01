@@ -5,7 +5,7 @@ Time spent on project
 | ---------- | -------------- |
 | 2020-07-29 | 0.9 hours      |
 | 2020-07-31 | 1.1 hours      |
-| 2020-08-01 | 0.7 hours      |
-| **Total**  | **2.7 hours**  |
+| 2020-08-01 | 1.0 hours      |
+| **Total**  | **3.0 hours**  |
 
 [Back to README.md](README.md)

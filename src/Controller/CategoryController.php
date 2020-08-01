@@ -8,6 +8,7 @@ use App\Entity\Category;
 use App\Form\Type\CategoryType;
 use App\Helper\SessionHelper;
 use App\Repository\CategoryRepository;
+use App\Repository\TutorialRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,10 +24,13 @@ final class CategoryController extends AbstractController
 
     private SessionHelper $sessionHelper;
 
-    public function __construct(CategoryRepository $categoryRepository, SessionHelper $sessionHelper)
+    private TutorialRepository $tutorialRepository;
+
+    public function __construct(CategoryRepository $categoryRepository, SessionHelper $sessionHelper, TutorialRepository $tutorialRepository)
     {
         $this->categoryRepository = $categoryRepository;
         $this->sessionHelper = $sessionHelper;
+        $this->tutorialRepository = $tutorialRepository;
     }
 
     /**
@@ -45,7 +49,11 @@ final class CategoryController extends AbstractController
      */
     public function view(Category $category): Response
     {
-        return $this->render('category/view.html.twig');
+        return $this->render('category/view.html.twig', [
+            'categories' => $this->categoryRepository->findAll(),
+            'category'   => $category,
+            'tutorials'  => $this->tutorialRepository->findByCategory($category),
+        ]);
     }
 
     /**

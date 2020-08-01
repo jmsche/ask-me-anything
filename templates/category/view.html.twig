@@ -1,0 +1,37 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    {{ include('_search_form.html.twig') }}
+
+    <h3 class="text-center mb-5">
+        {% for _category in categories %}
+            <a class="badge badge-{{ category.id == _category.id ? 'primary' : 'dark' }} mr-1 ml-1 rounded" href="{{ path('app_category_view', { 'slug': _category.slug }) }}">
+                <i class="fas fa-fw fa-{{ _category.icon }}"></i>
+                {{ _category.name }}
+            </a>
+        {% endfor %}
+    </h3>
+
+    {% if tutorials|length > 0 %}
+        <div class="card-columns">
+            {% for tutorial in tutorials %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="#">
+                                {% if tutorial.locked %}<i class="fas fa-fw fa-check"></i>{% endif %}
+                                {{ tutorial.name }}
+                            </a>
+                        </h5>
+                        <p class="card-text">{{ tutorial.description }}</p>
+                        <p class="card-text"><small class="text-muted">{{ tutorial.createdOn|date('d/m/Y') }}</small></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">{{ 'category.view.no_tutorials'|trans }}</div>
+    {% endif %}
+
+{% endblock body %}

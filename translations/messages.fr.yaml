@@ -14,6 +14,8 @@ category:
         flash_success: La catégorie <strong>%name%</strong> a été modifiée avec succès.
     delete:
         flash_success: La catégorie <strong>%name%</strong> a été supprimée avec succès.
+    view:
+        no_tutorials: Aucun tutoriel n'est disponible dans cette catégorie.
 
 content:
     save: Sauvegarder
@@ -46,6 +48,11 @@ login:
 navigation:
     login: Connexion
     logout: Déconnexion [%username%]
+
+search:
+    form:
+        placeholder: Vos termes de recherche
+        submit: Rechercher
 
 slug_type:
     help: Correspond à ce qui sera présent dans l'URL. Ne doit contenir que des lettres minuscules sans accent, chiffres et tirets. Par exemple, "Bienvenue chez nous !" devient "bienvenue-chez-nous".
