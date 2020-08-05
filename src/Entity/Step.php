@@ -61,4 +61,19 @@ class Step
     {
         $this->file = $file;
     }
+
+    public function getNumber(): ?int
+    {
+        $i = 1;
+        foreach ($this->getTutorial()->getSteps() as $iStep) {
+            if ($this->getId() === $iStep->getId()) {
+                return $i;
+                break;
+            }
+
+            ++$i;
+        }
+
+        return null;
+    }
 }

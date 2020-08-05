@@ -1,4 +1,5 @@
 {% extends 'layout.html.twig' %}
+{% set can_edit = is_granted('ROLE_SUPER_ADMIN') or (is_granted('ROLE_ADMIN') and not tutorial.locked) %}
 
 {% block body %}
 
@@ -15,7 +16,7 @@
             </a>
         {% endif %}
 
-        {% if is_granted('ROLE_SUPER_ADMIN') or (is_granted('ROLE_ADMIN') and not tutorial.locked) %}
+        {% if can_edit %}
             <a href="{{ path('app_tutorial_delete', { 'id': tutorial.id }) }}" class="btn btn-danger float-right" data-bootstrap="modal">
                 <i class="fas fa-fw fa-trash"></i>
                 {{ 'datalist.actions.delete'|trans }}
@@ -47,10 +48,42 @@
     <p class="text-center">{{ tutorial.description }}</p>
 
     <p class="text-center">
-        {% if is_granted('ROLE_SUPER_ADMIN') or (is_granted('ROLE_ADMIN') and not tutorial.locked) %}
+        {% if can_edit %}
             <a href="{{ path('app_step_create', { 'id': tutorial.id }) }}" class="btn btn-success" data-title="{{ 'tutorial.view.steps.add'|trans }}" data-toggle="tooltip">
                 <i class="fas fa-fw fa-plus"></i>
             </a>
+
+            {% if step is not null %}
+                {% if tutorial.steps|length > 1 %}
+                    {% if step_number != 1 %}
+                        <a href="{{ path('app_step_move_prev', { 'id': step.id }) }}" class="btn btn-primary" data-title="{{ 'tutorial.view.steps.move_prev'|trans }}" data-toggle="tooltip">
+                            <i class="fas fa-arrow-left tutorial-big-badges"></i>
+                        </a>
+                    {% else %}
+                        <button type="button" class="btn btn-primary disabled" data-title="{{ 'tutorial.view.steps.move_prev'|trans }}" data-toggle="tooltip">
+                            <i class="fas fa-arrow-left tutorial-big-badges"></i>
+                        </button>
+                    {% endif %}
+
+                    {% if step_number != tutorial.steps|length %}
+                        <a href="{{ path('app_step_move_next', { 'id': step.id }) }}" class="btn btn-primary" data-title="{{ 'tutorial.view.steps.move_next'|trans }}" data-toggle="tooltip">
+                            <i class="fas fa-arrow-right tutorial-big-badges"></i>
+                        </a>
+                    {% else %}
+                        <button type="button" class="btn btn-primary disabled" data-title="{{ 'tutorial.view.steps.move_next'|trans }}" data-toggle="tooltip">
+                            <i class="fas fa-arrow-right tutorial-big-badges"></i>
+                        </button>
+                    {% endif %}
+                {% endif %}
+
+                <a href="{{ path('app_step_update', { 'id': step.id }) }}" class="btn btn-secondary" data-title="{{ 'tutorial.view.steps.update'|trans }}" data-toggle="tooltip">
+                    <i class="fas fa-fw fa-pencil-alt"></i>
+                </a>
+
+                <a href="{{ path('app_step_delete', { 'id': step.id }) }}" class="btn btn-danger" data-bootstrap="modal" data-title="{{ 'tutorial.view.steps.delete'|trans }}" data-toggle="tooltip">
+                    <i class="fas fa-fw fa-trash"></i>
+                </a>
+            {% endif %}
         {% endif %}
     </p>
 
@@ -62,7 +95,7 @@
                 {% if step_number != 1 %}
                     <a href="{{ path('app_tutorial_view', { 'id': tutorial.id, 'stepNumber': step_number - 1 }) }}" data-title="{{ 'tutorial.view.steps.prev'|trans }}" data-toggle="tooltip"><i class="fas fa-fast-backward tutorial-big-badges"></i></a>
                 {% else %}
-                    <i class="fas fa-fast-backward tutorial-big-badges" data-title="{{ 'tutorial.view.steps.prev'|trans }}" data-toggle="tooltip"></i>
+                    <i class="fas fa-fast-backward tutorial-big-badges text-muted" data-title="{{ 'tutorial.view.steps.prev'|trans }}" data-toggle="tooltip"></i>
                 {% endif %}
             {% endif %}
 
@@ -76,7 +109,7 @@
                 {% if step_number != tutorial.steps|length %}
                     <a href="{{ path('app_tutorial_view', { 'id': tutorial.id, 'stepNumber': step_number + 1 }) }}" data-title="{{ 'tutorial.view.steps.next'|trans }}" data-toggle="tooltip"><i class="fas fa-fast-forward tutorial-big-badges"></i></a>
                 {% else %}
-                    <i class="fas fa-fast-forward tutorial-big-badges" data-title="{{ 'tutorial.view.steps.next'|trans }}" data-toggle="tooltip"></i>
+                    <i class="fas fa-fast-forward tutorial-big-badges text-muted" data-title="{{ 'tutorial.view.steps.next'|trans }}" data-toggle="tooltip"></i>
                 {% endif %}
             {% endif %}
         </h3>

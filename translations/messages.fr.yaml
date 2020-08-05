@@ -94,6 +94,14 @@ step:
     create:
         title: Créer une étape
         flash_success: L'étape a été créée avec succès.
+    update:
+        title: Modifier une étape
+        flash_success: L'étape a été modifiée avec succès.
+    delete:
+        content: Etape n°%number% du tutoriel %tutorial%
+        flash_success: L'étape a été supprimée avec succès.
+    move:
+        flash_success: L'étape a été déplacée avec succès.
     field:
         content: Contenu
 
@@ -119,7 +127,10 @@ tutorial:
             add: Ajouter une étape
             next: Etape suivante
             prev: Etape précédente
+            update: Modifier l'étape
             delete: Supprimer l'étape
+            move_prev: Déplacer à gauche
+            move_next: Déplacer à droite
         no_steps: Il n'y a aucune étape disponible.
 
 user:

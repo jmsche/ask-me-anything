@@ -15,6 +15,14 @@ final class StepRepository extends ServiceEntityRepository
         parent::__construct($registry, Step::class);
     }
 
+    public function invertSteps(Step $step1, Step $step2): void
+    {
+        $weight1 = $step1->getWeight();
+        $step1->setWeight($step2->getWeight());
+        $step2->setWeight($weight1);
+        $this->getEntityManager()->flush();
+    }
+
     public function save(Step $step): void
     {
         $this->getEntityManager()->persist($step);
