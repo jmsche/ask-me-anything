@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Tutorial;
 use App\Form\Type\TutorialType;
 use App\Helper\SessionHelper;
+use App\Repository\LogRepository;
 use App\Repository\TutorialRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,10 +25,13 @@ final class TutorialController extends AbstractController
 
     private SessionHelper $sessionHelper;
 
-    public function __construct(TutorialRepository $tutorialRepository, SessionHelper $sessionHelper)
+    private LogRepository $logRepository;
+
+    public function __construct(TutorialRepository $tutorialRepository, SessionHelper $sessionHelper, LogRepository $logRepository)
     {
         $this->tutorialRepository = $tutorialRepository;
         $this->sessionHelper = $sessionHelper;
+        $this->logRepository = $logRepository;
     }
 
     /**
@@ -44,6 +48,7 @@ final class TutorialController extends AbstractController
         }
 
         $step = $tutorial->getSteps()->get($stepNumber - 1);
+        $this->logRepository->create($request, $tutorial, $step);
 
         return $this->render('tutorial/view.html.twig', [
             'tutorial'      => $tutorial,

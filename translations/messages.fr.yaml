@@ -63,6 +63,34 @@ datalist:
         view: Voir
     no_items: Aucun élément n'est enregistré.
 
+log:
+    navigation_label: Statistiques
+    index:
+        title: Statistiques d'utilisation
+        no_logs: Il n'y a aucun log enregistré.
+        created_on: Date/heure
+        ip_address: Adresse IP
+        label: Page concernée
+        user_agent: Données de l'appareil
+        device:
+            desktop: Bureau
+            smartphone: Smartphone
+            tablet: Tablette
+            "feature phone": Feature phone
+            console: Console
+            tv: TV
+            "car browser": Car browser
+            "smart display": Smart display
+            camera: Caméra
+            "portable media player": Lecteur média portable
+            phablet: Phablette
+        delete: Supprimer l'historique
+    delete:
+        flash_success: L'historique a été effacé avec succès.
+    create:
+        tutorial: '%tutorial%'
+        tutorial_and_step: '%tutorial%, étape %step%'
+
 login:
     title: Connexion
     username: Nom d'utilisateur

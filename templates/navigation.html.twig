@@ -17,6 +17,7 @@
                     {{ nav_link(path('app_user_index'), 'user.navigation_label'|trans, 'user') }}
                     {{ nav_link(path('app_contact_index'), 'contact.navigation_label'|trans, 'envelope') }}
                     {{ nav_link(path('app_tutorial_create'), 'tutorial.create.navigation_label'|trans, 'file-signature') }}
+                    {{ nav_link(path('app_log_index'), 'log.navigation_label'|trans, 'chart-line') }}
                 {% elseif is_granted('ROLE_ADMIN') %}
                     {{ nav_link(path('app_tutorial_create'), 'tutorial.create.navigation_label'|trans, 'file-signature') }}
                 {% else %}

@@ -56,3 +56,60 @@
         </div>
     </div>
 {% endmacro modal %}
+
+{% macro os_icon(brand_name) %}
+    {% set icon = null %}
+    {% if 'Windows' in brand_name %}
+        {% set icon = 'windows' %}
+    {% elseif 'Mac' in brand_name or 'iOS' in brand_name %}
+        {% set icon = 'apple' %}
+    {% elseif 'Linux' in brand_name %}
+        {% set icon = 'linux' %}
+    {% elseif 'Ubuntu' in brand_name %}
+        {% set icon = 'ubuntu' %}
+    {% elseif 'Android' in brand_name %}
+        {% set icon = 'android' %}
+    {% endif %}
+
+    {% if icon is not null %}
+        <i class="fab fa-fw fa-{{ icon }}"></i>
+    {% endif %}
+{% endmacro os_icon %}
+
+{% macro device_icon(device_name) %}
+    {% set icon = null %}
+    {% if 'desktop' in device_name %}
+        {% set icon = 'desktop' %}
+    {% elseif 'phone' in device_name %}
+        {% set icon = 'mobile' %}
+    {% elseif 'tablet' in device_name %}
+        {% set icon = 'tablet' %}
+    {% elseif 'tv' in device_name %}
+        {% set icon = 'tv' %}
+    {% endif %}
+
+    {% if icon is not null %}
+        <i class="fas fa-fw fa-{{ icon }}"></i>
+    {% endif %}
+{% endmacro device_icon %}
+
+{% macro browser_icon(browser_name) %}
+    {% set icon = null %}
+    {% if 'Firefox' in browser_name %}
+        {% set icon = 'firefox' %}
+    {% elseif 'Chrome' in browser_name %}
+        {% set icon = 'chrome' %}
+    {% elseif 'Opera' in browser_name %}
+        {% set icon = 'opera' %}
+    {% elseif 'Safari' in browser_name %}
+        {% set icon = 'safari' %}
+    {% elseif 'Internet Explorer' in browser_name %}
+        {% set icon = 'internet-explorer' %}
+    {% elseif 'Edge' in browser_name %}
+        {% set icon = 'edge' %}
+    {% endif %}
+
+    {% if icon is not null %}
+        <i class="fab fa-fw fa-{{ icon }}"></i>
+    {% endif %}
+{% endmacro browser_icon %}

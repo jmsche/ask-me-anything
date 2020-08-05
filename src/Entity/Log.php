@@ -17,14 +17,14 @@ class Log
     use CreatedOnTrait;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
-    private string $ipAddress;
+    private ?string $ipAddress = null;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
-    private string $userAgent;
+    private ?string $userAgent = null;
 
     /**
      * @ORM\Column(type="string")
@@ -36,7 +36,7 @@ class Log
      */
     private string $label;
 
-    public function __construct(string $ipAddress, string $userAgent, string $url, string $label)
+    public function __construct(?string $ipAddress, ?string $userAgent, string $url, string $label)
     {
         $this->createdOn = new \DateTime();
         $this->ipAddress = $ipAddress;
@@ -45,12 +45,12 @@ class Log
         $this->label = $label;
     }
 
-    public function getIpAddress(): string
+    public function getIpAddress(): ?string
     {
         return $this->ipAddress;
     }
 
-    public function getUserAgent(): string
+    public function getUserAgent(): ?string
     {
         return $this->userAgent;
     }
