@@ -119,6 +119,12 @@ tutorial:
         name: Nom
         description: Description
         category: Catégorie
+    set_visibility:
+        flash_success: La visibilité du tutoriel a été modifiée.
+    unlock:
+        flash_success: Le tutoriel a été déverrouillé.
+    lock:
+        flash_success: Le tutoriel a été verrouillé.
     view:
         locked: Verrouillé
         unlocked: Ouvert

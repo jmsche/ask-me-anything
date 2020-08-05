@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -84,9 +85,7 @@ final class TutorialController extends AbstractController
      */
     public function update(Tutorial $tutorial, Request $request): Response
     {
-        if ($tutorial->isLocked() && !$this->isGranted('ROLE_SUPER_ADMIN')) {
-            throw $this->createAccessDeniedException('Tutorial is locked for simple admins.');
-        }
+        $this->secure($tutorial);
 
         $form = $this->createForm(TutorialType::class, $tutorial, [
             'method' => 'POST',
@@ -112,9 +111,7 @@ final class TutorialController extends AbstractController
      */
     public function delete(Request $request, Tutorial $tutorial): Response
     {
-        if ($tutorial->isLocked() && !$this->isGranted('ROLE_SUPER_ADMIN')) {
-            throw $this->createAccessDeniedException('Tutorial is locked for simple admins.');
-        }
+        $this->secure($tutorial);
 
         $status = 200;
 
@@ -139,5 +136,84 @@ final class TutorialController extends AbstractController
         return $this->json(['content' => $this->renderView('tutorial/delete.html.twig', [
             'tutorial' => $tutorial,
         ])], $status);
+    }
+
+    /**
+     * @Route("/lock/{id}", name="lock")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function lock(Tutorial $tutorial): Response
+    {
+        $this->secure($tutorial);
+        if ($tutorial->isLocked()) {
+            throw new BadRequestHttpException('Tutorial is already locked.');
+        }
+
+        $tutorial->setLocked(true);
+        $this->tutorialRepository->save($tutorial);
+        $this->sessionHelper->addFlash('success', 'tutorial.lock.flash_success');
+
+        return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
+    }
+
+    /**
+     * @Route("/unlock/{id}", name="unlock")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function unlock(Tutorial $tutorial): Response
+    {
+        $this->secure($tutorial);
+        if (!$tutorial->isLocked()) {
+            throw new BadRequestHttpException('Tutorial is already unlocked.');
+        }
+
+        $tutorial->setLocked(false);
+        $this->tutorialRepository->save($tutorial);
+        $this->sessionHelper->addFlash('success', 'tutorial.unlock.flash_success');
+
+        return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
+    }
+
+    /**
+     * @Route("/set-visible/{id}", name="set_visible")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function setVisible(Tutorial $tutorial): Response
+    {
+        $this->secure($tutorial);
+        if ($tutorial->isVisible()) {
+            throw new BadRequestHttpException('Tutorial is already visible.');
+        }
+
+        $tutorial->setVisible(true);
+        $this->tutorialRepository->save($tutorial);
+        $this->sessionHelper->addFlash('success', 'tutorial.set_visibility.flash_success');
+
+        return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
+    }
+
+    /**
+     * @Route("/set-invisible/{id}", name="set_invisible")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function setInvisible(Tutorial $tutorial): Response
+    {
+        $this->secure($tutorial);
+        if (!$tutorial->isVisible()) {
+            throw new BadRequestHttpException('Tutorial is already invisible.');
+        }
+
+        $tutorial->setVisible(false);
+        $this->tutorialRepository->save($tutorial);
+        $this->sessionHelper->addFlash('success', 'tutorial.set_visibility.flash_success');
+
+        return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
+    }
+
+    private function secure(Tutorial $tutorial): void
+    {
+        if ($tutorial->isLocked() && !$this->isGranted('ROLE_SUPER_ADMIN')) {
+            throw $this->createAccessDeniedException('Tutorial is locked for simple admins.');
+        }
     }
 }
