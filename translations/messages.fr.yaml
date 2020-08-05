@@ -104,6 +104,8 @@ step:
         flash_success: L'étape a été déplacée avec succès.
     field:
         content: Contenu
+    help:
+        content: 'Taille maximale des uploads : 8 Mo'
 
 tutorial:
     create:

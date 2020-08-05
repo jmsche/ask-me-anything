@@ -18,6 +18,7 @@ final class StepType extends AbstractType
             ->add('content', CKEditorType::class, [
                 'label'       => 'step.field.content',
                 'config_name' => 'step',
+                'help'        => 'step.help.content',
             ])
         ;
     }
