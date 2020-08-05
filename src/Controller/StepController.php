@@ -169,6 +169,37 @@ final class StepController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/upload-file", name="upload_file")
+     */
+    public function uploadFile(Request $request): Response
+    {
+        try {
+            /* @var \Symfony\Component\HttpFoundation\File\UploadedFile $uploadedFile */
+            $uploadedFile = $request->files->get('upload');
+            if ($uploadedFile->getError()) {
+                throw new \Exception($uploadedFile->getErrorMessage());
+            }
+            $uploadsDir = __DIR__ . '/../../public/uploads/';
+            if (!is_dir($uploadsDir) && !mkdir($uploadsDir, 0777, true) && !is_dir($uploadsDir)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $uploadsDir));
+            }
+
+            $file = $uploadedFile->move($uploadsDir, uniqid('', false) . '.' . $uploadedFile->guessExtension());
+
+            return $this->json([
+                'uploaded' => 1,
+                'fileName' => $file->getFilename(),
+                'url'      => '/uploads/' . $file->getFilename(),
+            ]);
+        } catch (\Exception $e) {
+            return $this->json([
+                'uploaded' => 0,
+                'error'    => ['message' => $e->getMessage()],
+            ]);
+        }
+    }
+
     private function secure(Step $step): void
     {
         if ($step->getTutorial()->isLocked() && !$this->isGranted('ROLE_SUPER_ADMIN')) {

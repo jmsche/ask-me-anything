@@ -2,7 +2,7 @@ fos_ck_editor:
     configs:
         step:
             toolbar: 'step'
-            extraPlugins: 'image2,codesnippet'
+            extraPlugins: 'image2,codesnippet,html5video,widget,widgetselection,clipboard,lineutils'
             height: 400
             allowedContent: true
             codeSnippet_languages:
@@ -20,12 +20,14 @@ fos_ck_editor:
                 sql: SQL
                 twig: Twig
                 yaml: YAML
+            filebrowserUploadUrl: /step/upload-file?
     toolbars:
         configs:
             step:
                 - ['Source', 'Format']
                 - '@standard.links'
                 - '@standard.insert'
+                - ['Html5video']
                 - '@full.tools'
                 - ['CodeSnippet']
                 - '/'

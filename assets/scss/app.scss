@@ -19,3 +19,10 @@ $custom-file-text: (
 .tutorial-big-badges {
   font-size: 20px;
 }
+
+.step-view {
+  img {
+    max-width: 100% !important;
+    height: auto;
+  }
+}

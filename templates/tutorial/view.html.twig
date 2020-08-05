@@ -139,7 +139,9 @@
             {% endif %}
         </h3>
 
-        {{ step.content|raw }}
+        <section class="step-view">
+            {{ step.content|raw }}
+        </section>
     {% endif %}
 
 {% endblock body %}
