@@ -20,7 +20,7 @@ final class UserControllerTest extends AbstractControllerTest
         static::assertResponseIsSuccessful();
         static::assertCount(3, $crawler->filter('tbody tr'));
     }
-    
+
     public function testCreate(): void
     {
         static::$client->request('GET', '/user/create');

@@ -37,7 +37,10 @@
 
                             {% if device.isBot %}
                                 <i class="fas fa-fw fa-robot"></i>
-                                {{ device.bot.name }} ({{ device.bot.category }})
+                                {{ device.bot.name }}
+                                {% if device.bot.category is not empty %}
+                                    ({{ device.bot.category }})
+                                {% endif %}
                             {% else %}
                                 {% if device.os is not null %}
                                     {{ os_icon(device.os.name) }}

@@ -37,7 +37,7 @@ final class ContactControllerTest extends AbstractControllerTest
         static::$client->request('GET', '/contact/view/100');
         static::assertResponseStatusCodeSame(404);
     }
-    
+
     public function testCreate(): void
     {
         static::$client->request('GET', '/contact/create');

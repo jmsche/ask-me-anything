@@ -30,7 +30,7 @@ final class CategoryControllerTest extends AbstractControllerTest
         static::$client->request('GET', '/category/view/unknown');
         static::assertResponseStatusCodeSame(404);
     }
-    
+
     public function testCreate(): void
     {
         static::$client->request('GET', '/category/create');
