@@ -14,7 +14,26 @@ final class DefaultControllerTest extends AbstractControllerTest
 
     public function testSearch(): void
     {
-        static::$client->request('GET', '/search?q=test');
+        // Visible tutorial
+        $crawler = static::$client->request('GET', '/search?q=opera');
         static::assertResponseIsSuccessful();
+        static::assertCount(1, $crawler->filter('.card'));
+
+        // Invisible tutorial
+        $crawler = static::$client->request('GET', '/search?q=brave');
+        static::assertResponseIsSuccessful();
+        static::assertCount(0, $crawler->filter('.card'));
+
+        // Invisible tutorial as admin
+        $this->loginAsAdmin();
+        $crawler = static::$client->request('GET', '/search?q=brave');
+        static::assertResponseIsSuccessful();
+        static::assertCount(0, $crawler->filter('.card'));
+
+        // Invisible tutorial as super admin
+        $this->loginAsSuperAdmin();
+        $crawler = static::$client->request('GET', '/search?q=brave');
+        static::assertResponseIsSuccessful();
+        static::assertCount(1, $crawler->filter('.card'));
     }
 }

@@ -1,7 +1,29 @@
 App\Entity\Tutorial:
-    tutorial__{1..20}:
-        name: <company()>
-        description: 50%? <paragraph()>
+    tutorial (template):
+        description: 90%? <paragraph()>
         category: '@category__*'
+
+    tutorial__{1..20} (extends tutorial):
+        name: <company()>
         locked: <boolean()>
         visible: <boolean()>
+
+    tutorial__21 (extends tutorial):
+        name: Installer Firefox
+        locked: true
+        visible: true
+
+    tutorial__22 (extends tutorial):
+        name: Installer Chrome
+        locked: false
+        visible: false
+
+    tutorial__23 (extends tutorial):
+        name: Installer Opera
+        locked: false
+        visible: true
+
+    tutorial__24 (extends tutorial):
+        name: Installer Brave
+        locked: true
+        visible: false
