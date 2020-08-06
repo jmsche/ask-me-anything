@@ -35,23 +35,28 @@
                         <td>
                             {% set device = get_user_agent_info(log.userAgent) %}
 
-                            {% if device.os is not null %}
-                                {{ os_icon(device.os.name) }}
-                                {{ device.os.name }}
-                                {{ device.os.version }}
-                                {{ device.os.platform }}
-                            {% endif %}
-                            <br />
-                            {% if device.deviceName is not empty %}
-                                {{ device_icon(device.deviceName) }}
-                                {{ "log.index.device.#{device.deviceName}"|trans }}
-                            {% endif %}
-                            {% if device.brandName is not empty or device.model is not empty %}({{ device.brandName }} {{ device.model }}){% endif %}
-                            <br />
-                            {% if device.client is not null %}
-                                {{ browser_icon(device.client.name) }}
-                                {{ device.client.name }}
-                                {{ device.client.version }}
+                            {% if device.isBot %}
+                                <i class="fas fa-fw fa-robot"></i>
+                                {{ device.bot.name }} ({{ device.bot.category }})
+                            {% else %}
+                                {% if device.os is not null %}
+                                    {{ os_icon(device.os.name) }}
+                                    {{ device.os.name }}
+                                    {{ device.os.version }}
+                                    {{ device.os.platform }}
+                                {% endif %}
+                                <br />
+                                {% if device.deviceName is not empty %}
+                                    {{ device_icon(device.deviceName) }}
+                                    {{ "log.index.device.#{device.deviceName}"|trans }}
+                                {% endif %}
+                                {% if device.brandName is not empty or device.model is not empty %}({{ device.brandName }} {{ device.model }}){% endif %}
+                                <br />
+                                {% if device.client is not null %}
+                                    {{ browser_icon(device.client.name) }}
+                                    {{ device.client.name }}
+                                    {{ device.client.version }}
+                                {% endif %}
                             {% endif %}
                         </td>
                     </tr>
