@@ -8,3 +8,8 @@ App\Entity\User:
         username: superadmin
         role: ROLE_SUPER_ADMIN
         password: <encodePassword(@self, 'superadmin')>
+
+    user__test:
+        username: test
+        role: ROLE_ADMIN
+        password: <encodePassword(@self, 'test')>

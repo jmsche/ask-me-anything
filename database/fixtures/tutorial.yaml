@@ -1,12 +1,13 @@
 App\Entity\Tutorial:
     tutorial (template):
         description: 90%? <paragraph()>
-        category: '@category__*'
+        category: '@category__internet'
 
     tutorial__{1..20} (extends tutorial):
         name: <company()>
         locked: <boolean()>
         visible: <boolean()>
+        category: '@category__<randomElement(["tv", "mobile", "email", "voip", "autres"])>'
 
     tutorial__21 (extends tutorial):
         name: Installer Firefox

@@ -34,3 +34,9 @@ App\Entity\Category:
         slug: autres
         icon: random
         weight: 6
+
+    category__empty:
+        name: Vide
+        slug: vide
+        icon: trash
+        weight: 7
