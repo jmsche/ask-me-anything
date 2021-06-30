@@ -6,7 +6,6 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
-use App\Helper\SessionHelper;
 use App\Repository\CategoryRepository;
 use App\Repository\TutorialRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -14,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatableMessage;
 
 /**
  * @Route("/category", name="app_category_")
@@ -22,7 +22,6 @@ final class CategoryController extends AbstractController
 {
     public function __construct(
         private CategoryRepository $categoryRepository,
-        private SessionHelper $sessionHelper,
         private TutorialRepository $tutorialRepository,
     ) {
     }
@@ -65,7 +64,7 @@ final class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryRepository->save($category);
-            $this->sessionHelper->addFlash('success', 'category.create.flash_success', ['%name%' => $category->getName()]);
+            $this->addFlash('success', new TranslatableMessage('category.create.flash_success', ['%name%' => $category->getName()]));
 
             return $this->redirectToRoute('app_category_index');
         }
@@ -89,7 +88,7 @@ final class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryRepository->save($category);
-            $this->sessionHelper->addFlash('success', 'category.update.flash_success', ['%name%' => $category->getName()]);
+            $this->addFlash('success', new TranslatableMessage('category.update.flash_success', ['%name%' => $category->getName()]));
 
             return $this->redirectToRoute('app_category_index');
         }
@@ -115,13 +114,13 @@ final class CategoryController extends AbstractController
                 ];
                 $this->categoryRepository->delete($category);
 
-                $this->sessionHelper->addFlash('success', 'category.delete.flash_success', ['%name%' => $result['entity_name']]);
+                $this->addFlash('success', new TranslatableMessage('category.delete.flash_success', ['%name%' => $result['entity_name']]));
                 $redirectUrl = $request->headers->get('referer');
 
                 return $this->json(['result' => $result, 'redirect_url' => $redirectUrl], 301);
             } catch (\Exception $e) {
                 $status = 400;
-                $this->sessionHelper->addFlash('danger', 'content.delete.flash.error');
+                $this->addFlash('danger', new TranslatableMessage('content.delete.flash.error'));
             }
         }
 

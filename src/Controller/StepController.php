@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Entity\Step;
 use App\Entity\Tutorial;
 use App\Form\Type\StepType;
-use App\Helper\SessionHelper;
 use App\Repository\StepRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatableMessage;
 
 /**
  * @Route("/step", name="app_step_")
@@ -24,7 +24,6 @@ final class StepController extends AbstractController
 {
     public function __construct(
         private StepRepository $stepRepository,
-        private SessionHelper $sessionHelper,
     ) {
     }
 
@@ -50,7 +49,7 @@ final class StepController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->stepRepository->save($step);
-            $this->sessionHelper->addFlash('success', 'step.create.flash_success');
+            $this->addFlash('success', new TranslatableMessage('step.create.flash_success'));
 
             return $this->redirectToRoute('app_tutorial_view', [
                 'id'         => $tutorial->getId(),
@@ -78,7 +77,7 @@ final class StepController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->stepRepository->save($step);
-            $this->sessionHelper->addFlash('success', 'step.update.flash_success');
+            $this->addFlash('success', new TranslatableMessage('step.update.flash_success'));
 
             return $this->redirectToRoute('app_tutorial_view', ['id' => $step->getTutorial()->getId(), 'stepNumber' => $step->getNumber()]);
         }
@@ -106,13 +105,13 @@ final class StepController extends AbstractController
                 $tutorialId = $step->getTutorial()->getId();
                 $this->stepRepository->delete($step);
 
-                $this->sessionHelper->addFlash('success', 'step.delete.flash_success', ['%number%' => $result['entity_name']]);
+                $this->addFlash('success', new TranslatableMessage('step.delete.flash_success', ['%number%' => $result['entity_name']]));
                 $redirectUrl = $this->generateUrl('app_tutorial_view', ['id' => $tutorialId]);
 
                 return $this->json(['result' => $result, 'redirect_url' => $redirectUrl], 301);
             } catch (\Exception $e) {
                 $status = 400;
-                $this->sessionHelper->addFlash('danger', 'content.delete.flash.error');
+                $this->addFlash('danger', new TranslatableMessage('content.delete.flash.error'));
             }
         }
 
@@ -135,7 +134,7 @@ final class StepController extends AbstractController
         $number = $step->getNumber();
         $prevStep = $step->getTutorial()->getSteps()->get($number - 2);
         $this->stepRepository->invertSteps($step, $prevStep);
-        $this->sessionHelper->addFlash('success', 'step.move.flash_success');
+        $this->addFlash('success', new TranslatableMessage('step.move.flash_success'));
 
         return $this->redirectToRoute('app_tutorial_view', [
             'id'         => $step->getTutorial()->getId(),
@@ -157,7 +156,7 @@ final class StepController extends AbstractController
         $number = $step->getNumber();
         $nextStep = $step->getTutorial()->getSteps()->get($number);
         $this->stepRepository->invertSteps($step, $nextStep);
-        $this->sessionHelper->addFlash('success', 'step.move.flash_success');
+        $this->addFlash('success', new TranslatableMessage('step.move.flash_success'));
 
         return $this->redirectToRoute('app_tutorial_view', [
             'id'         => $step->getTutorial()->getId(),

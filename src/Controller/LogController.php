@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Helper\SessionHelper;
 use App\Repository\LogRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatableMessage;
 
 /**
  * @Route("/log", name="app_log_")
@@ -19,7 +19,6 @@ final class LogController extends AbstractController
 {
     public function __construct(
         private LogRepository $repository,
-        private SessionHelper $sessionHelper,
     ) {
     }
 
@@ -39,7 +38,7 @@ final class LogController extends AbstractController
     public function delete(): Response
     {
         $this->repository->deleteAllData();
-        $this->sessionHelper->addFlash('success', 'log.delete.flash_success');
+        $this->addFlash('success', new TranslatableMessage('log.delete.flash_success'));
 
         return $this->redirectToRoute('app_log_index');
     }

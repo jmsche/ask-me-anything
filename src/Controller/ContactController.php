@@ -6,13 +6,13 @@ namespace App\Controller;
 
 use App\Entity\ContactMessage;
 use App\Form\Type\ContactMessageType;
-use App\Helper\SessionHelper;
 use App\Repository\ContactMessageRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatableMessage;
 
 /**
  * @Route("/contact", name="app_contact_")
@@ -21,7 +21,6 @@ final class ContactController extends AbstractController
 {
     public function __construct(
         private ContactMessageRepository $repository,
-        private SessionHelper $sessionHelper,
     ) {
     }
 
@@ -63,7 +62,7 @@ final class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->repository->save($message);
-            $this->sessionHelper->addFlash('success', 'contact.create.flash_success');
+            $this->addFlash('success', new TranslatableMessage('contact.create.flash_success'));
 
             return $this->redirectToRoute('app_default_index');
         }
@@ -89,13 +88,13 @@ final class ContactController extends AbstractController
                 ];
                 $this->repository->delete($message);
 
-                $this->sessionHelper->addFlash('success', 'contact.delete.flash_success', ['%name%' => $result['entity_name']]);
+                $this->addFlash('success', new TranslatableMessage('contact.delete.flash_success', ['%name%' => $result['entity_name']]));
                 $redirectUrl = $request->headers->get('referer');
 
                 return $this->json(['result' => $result, 'redirect_url' => $redirectUrl], 301);
             } catch (\Exception $e) {
                 $status = 400;
-                $this->sessionHelper->addFlash('danger', 'content.delete.flash.error');
+                $this->addFlash('danger', new TranslatableMessage('content.delete.flash.error'));
             }
         }
 

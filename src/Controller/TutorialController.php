@@ -6,7 +6,6 @@ namespace App\Controller;
 
 use App\Entity\Tutorial;
 use App\Form\Type\TutorialType;
-use App\Helper\SessionHelper;
 use App\Repository\LogRepository;
 use App\Repository\TutorialRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -15,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatableMessage;
 
 /**
  * @Route("/tutorial", name="app_tutorial_")
@@ -23,7 +23,6 @@ final class TutorialController extends AbstractController
 {
     public function __construct(
         private TutorialRepository $tutorialRepository,
-        private SessionHelper $sessionHelper,
         private LogRepository $logRepository,
     ) {
     }
@@ -68,7 +67,7 @@ final class TutorialController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->tutorialRepository->save($tutorial);
-            $this->sessionHelper->addFlash('success', 'tutorial.create.flash_success', ['%name%' => $tutorial->getName()]);
+            $this->addFlash('success', new TranslatableMessage('tutorial.create.flash_success', ['%name%' => $tutorial->getName()]));
 
             return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
         }
@@ -94,7 +93,7 @@ final class TutorialController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->tutorialRepository->save($tutorial);
-            $this->sessionHelper->addFlash('success', 'tutorial.update.flash_success', ['%name%' => $tutorial->getName()]);
+            $this->addFlash('success', new TranslatableMessage('tutorial.update.flash_success', ['%name%' => $tutorial->getName()]));
 
             return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
         }
@@ -122,13 +121,13 @@ final class TutorialController extends AbstractController
                 ];
                 $this->tutorialRepository->delete($tutorial);
 
-                $this->sessionHelper->addFlash('success', 'tutorial.delete.flash_success', ['%name%' => $result['entity_name']]);
+                $this->addFlash('success', new TranslatableMessage('tutorial.delete.flash_success', ['%name%' => $result['entity_name']]));
                 $redirectUrl = $this->generateUrl('app_default_index');
 
                 return $this->json(['result' => $result, 'redirect_url' => $redirectUrl], 301);
             } catch (\Exception $e) {
                 $status = 400;
-                $this->sessionHelper->addFlash('danger', 'content.delete.flash.error');
+                $this->addFlash('danger', new TranslatableMessage('content.delete.flash.error'));
             }
         }
 
@@ -150,7 +149,7 @@ final class TutorialController extends AbstractController
 
         $tutorial->setLocked(true);
         $this->tutorialRepository->save($tutorial);
-        $this->sessionHelper->addFlash('success', 'tutorial.lock.flash_success');
+        $this->addFlash('success', new TranslatableMessage('tutorial.lock.flash_success'));
 
         return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
     }
@@ -168,7 +167,7 @@ final class TutorialController extends AbstractController
 
         $tutorial->setLocked(false);
         $this->tutorialRepository->save($tutorial);
-        $this->sessionHelper->addFlash('success', 'tutorial.unlock.flash_success');
+        $this->addFlash('success', new TranslatableMessage('tutorial.unlock.flash_success'));
 
         return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
     }
@@ -186,7 +185,7 @@ final class TutorialController extends AbstractController
 
         $tutorial->setVisible(true);
         $this->tutorialRepository->save($tutorial);
-        $this->sessionHelper->addFlash('success', 'tutorial.set_visibility.flash_success');
+        $this->addFlash('success', new TranslatableMessage('tutorial.set_visibility.flash_success'));
 
         return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
     }
@@ -204,7 +203,7 @@ final class TutorialController extends AbstractController
 
         $tutorial->setVisible(false);
         $this->tutorialRepository->save($tutorial);
-        $this->sessionHelper->addFlash('success', 'tutorial.set_visibility.flash_success');
+        $this->addFlash('success', new TranslatableMessage('tutorial.set_visibility.flash_success'));
 
         return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
     }

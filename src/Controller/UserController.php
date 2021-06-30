@@ -6,13 +6,13 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\Type\UserType;
-use App\Helper\SessionHelper;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatableMessage;
 
 /**
  * @Route("/user", name="app_user_")
@@ -22,7 +22,6 @@ final class UserController extends AbstractController
 {
     public function __construct(
         private UserRepository $userRepository,
-        private SessionHelper $sessionHelper,
     ) {
     }
 
@@ -50,7 +49,7 @@ final class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userRepository->save($user);
-            $this->sessionHelper->addFlash('success', 'user.create.flash_success', ['%name%' => $user->getUsername()]);
+            $this->addFlash('success', new TranslatableMessage('user.create.flash_success', ['%name%' => $user->getUsername()]));
 
             return $this->redirectToRoute('app_user_index');
         }
@@ -73,7 +72,7 @@ final class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userRepository->save($user);
-            $this->sessionHelper->addFlash('success', 'user.update.flash_success', ['%name%' => $user->getUsername()]);
+            $this->addFlash('success', new TranslatableMessage('user.update.flash_success', ['%name%' => $user->getUsername()]));
 
             return $this->redirectToRoute('app_user_index');
         }
@@ -98,13 +97,13 @@ final class UserController extends AbstractController
                 ];
                 $this->userRepository->delete($user);
 
-                $this->sessionHelper->addFlash('success', 'user.delete.flash_success', ['%name%' => $result['entity_name']]);
+                $this->addFlash('success', new TranslatableMessage('user.delete.flash_success', ['%name%' => $result['entity_name']]));
                 $redirectUrl = $request->headers->get('referer');
 
                 return $this->json(['result' => $result, 'redirect_url' => $redirectUrl], 301);
             } catch (\Exception $e) {
                 $status = 400;
-                $this->sessionHelper->addFlash('danger', 'content.delete.flash.error');
+                $this->addFlash('danger', new TranslatableMessage('content.delete.flash.error'));
             }
         }
 
