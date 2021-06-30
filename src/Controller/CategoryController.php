@@ -15,9 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatableMessage;
 
-/**
- * @Route("/category", name="app_category_")
- */
+#[Route('/category', name: 'app_category_')]
 final class CategoryController extends AbstractController
 {
     public function __construct(
@@ -26,10 +24,8 @@ final class CategoryController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("", name="index")
-     * @IsGranted("ROLE_SUPER_ADMIN")
-     */
+    #[Route('', name: 'index')]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
     public function index(): Response
     {
         return $this->render('category/index.html.twig', [
@@ -37,9 +33,7 @@ final class CategoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/view/{slug}", name="view")
-     */
+    #[Route('/view/{slug}', name: 'view')]
     public function view(Category $category): Response
     {
         return $this->render('category/view.html.twig', [
@@ -49,10 +43,8 @@ final class CategoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/create", name="create")
-     * @IsGranted("ROLE_SUPER_ADMIN")
-     */
+    #[Route('/create', name: 'create')]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
     public function create(Request $request): Response
     {
         $category = new Category();
@@ -74,10 +66,8 @@ final class CategoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/update/{id}", name="update")
-     * @IsGranted("ROLE_SUPER_ADMIN")
-     */
+    #[Route('/update/{id}', name: 'update')]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
     public function update(Request $request, Category $category): Response
     {
         $form = $this->createForm(CategoryType::class, $category, [
@@ -98,10 +88,8 @@ final class CategoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/delete/{id}", name="delete")
-     * @IsGranted("ROLE_SUPER_ADMIN")
-     */
+    #[Route('/delete/{id}', name: 'delete')]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
     public function delete(Request $request, Category $category): Response
     {
         $status = 200;

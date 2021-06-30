@@ -14,9 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatableMessage;
 
-/**
- * @Route("/contact", name="app_contact_")
- */
+#[Route('/contact', name: 'app_contact_')]
 final class ContactController extends AbstractController
 {
     public function __construct(
@@ -24,10 +22,8 @@ final class ContactController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("", name="index")
-     * @IsGranted("ROLE_SUPER_ADMIN")
-     */
+    #[Route('', name: 'index')]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
     public function index(): Response
     {
         return $this->render('contact/index.html.twig', [
@@ -35,10 +31,8 @@ final class ContactController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/view/{id}", name="view")
-     * @IsGranted("ROLE_SUPER_ADMIN")
-     */
+    #[Route('/view/{id}', name: 'view')]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
     public function view(ContactMessage $message): Response
     {
         $this->repository->markAsRead($message);
@@ -48,9 +42,7 @@ final class ContactController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/create", name="create")
-     */
+    #[Route('/create', name: 'create')]
     public function create(Request $request): Response
     {
         $message = new ContactMessage();
@@ -72,10 +64,8 @@ final class ContactController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/delete/{id}", name="delete")
-     * @IsGranted("ROLE_SUPER_ADMIN")
-     */
+    #[Route('/delete/{id}', name: 'delete')]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
     public function delete(Request $request, ContactMessage $message): Response
     {
         $status = 200;

@@ -11,9 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route(name="app_default_")
- */
+#[Route(name: 'app_default_')]
 final class DefaultController extends AbstractController
 {
     public function __construct(
@@ -22,9 +20,7 @@ final class DefaultController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("", name="index")
-     */
+    #[Route('', name: 'index')]
     public function index(): Response
     {
         return $this->render('default/index.html.twig', [
@@ -32,9 +28,7 @@ final class DefaultController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/search", name="search")
-     */
+    #[Route('/search', name: 'search')]
     public function search(Request $request): Response
     {
         $query = $request->query->get('q');

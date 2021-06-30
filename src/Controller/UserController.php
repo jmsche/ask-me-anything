@@ -14,10 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatableMessage;
 
-/**
- * @Route("/user", name="app_user_")
- * @IsGranted("ROLE_SUPER_ADMIN")
- */
+#[Route('/user', name: 'app_user_')]
+#[IsGranted('ROLE_SUPER_ADMIN')]
 final class UserController extends AbstractController
 {
     public function __construct(
@@ -25,9 +23,7 @@ final class UserController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("", name="index")
-     */
+    #[Route('', name: 'index')]
     public function index(): Response
     {
         return $this->render('user/index.html.twig', [
@@ -35,9 +31,7 @@ final class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/create", name="create")
-     */
+    #[Route('/create', name: 'create')]
     public function create(Request $request): Response
     {
         $user = new User();
@@ -59,9 +53,7 @@ final class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/update/{id}", name="update")
-     */
+    #[Route('/update/{id}', name: 'update')]
     public function update(Request $request, User $user): Response
     {
         $form = $this->createForm(UserType::class, $user, [
@@ -82,9 +74,7 @@ final class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/delete/{id}", name="delete")
-     */
+    #[Route('/delete/{id}', name: 'delete')]
     public function delete(Request $request, User $user): Response
     {
         $status = 200;

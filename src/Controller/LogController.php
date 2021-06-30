@@ -11,10 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatableMessage;
 
-/**
- * @Route("/log", name="app_log_")
- * @IsGranted("ROLE_SUPER_ADMIN")
- */
+#[Route('/log', name: 'app_log_')]
+#[IsGranted('ROLE_SUPER_ADMIN')]
 final class LogController extends AbstractController
 {
     public function __construct(
@@ -22,9 +20,7 @@ final class LogController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("", name="index")
-     */
+    #[Route('', name: 'index')]
     public function index(): Response
     {
         return $this->render('log/index.html.twig', [
@@ -32,9 +28,7 @@ final class LogController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/delete", name="delete")
-     */
+    #[Route('/delete', name: 'delete')]
     public function delete(): Response
     {
         $this->repository->deleteAllData();

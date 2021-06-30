@@ -16,10 +16,8 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatableMessage;
 
-/**
- * @Route("/step", name="app_step_")
- * @IsGranted("ROLE_ADMIN")
- */
+#[Route('/step', name: 'app_step_')]
+#[IsGranted('ROLE_ADMIN')]
 final class StepController extends AbstractController
 {
     public function __construct(
@@ -27,9 +25,7 @@ final class StepController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("/create/{id}", name="create")
-     */
+    #[Route('/create/{id}', name: 'create')]
     public function create(Request $request, Tutorial $tutorial): Response
     {
         if ($tutorial->isLocked() && !$this->isGranted('ROLE_SUPER_ADMIN')) {
@@ -62,9 +58,7 @@ final class StepController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/update/{id}", name="update")
-     */
+    #[Route('/update/{id}', name: 'update')]
     public function update(Step $step, Request $request): Response
     {
         $this->secure($step);
@@ -87,9 +81,7 @@ final class StepController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/delete/{id}", name="delete")
-     */
+    #[Route('/delete/{id}', name: 'delete')]
     public function delete(Request $request, Step $step): Response
     {
         $this->secure($step);
@@ -120,9 +112,7 @@ final class StepController extends AbstractController
         ])], $status);
     }
 
-    /**
-     * @Route("/move-prev/{id}", name="move_prev")
-     */
+    #[Route('/move-prev/{id}', name: 'move_prev')]
     public function movePrev(Step $step): Response
     {
         $this->secure($step);
@@ -142,9 +132,7 @@ final class StepController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/move-next/{id}", name="move_next")
-     */
+    #[Route('/move-next/{id}', name: 'move_next')]
     public function moveNext(Step $step): Response
     {
         $this->secure($step);
@@ -164,9 +152,7 @@ final class StepController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/upload-file", name="upload_file")
-     */
+    #[Route('/upload-file', name: 'upload_file')]
     public function uploadFile(Request $request): Response
     {
         try {

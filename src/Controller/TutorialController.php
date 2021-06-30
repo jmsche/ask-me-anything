@@ -16,9 +16,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatableMessage;
 
-/**
- * @Route("/tutorial", name="app_tutorial_")
- */
+#[Route('/tutorial', name: 'app_tutorial_')]
 final class TutorialController extends AbstractController
 {
     public function __construct(
@@ -27,9 +25,7 @@ final class TutorialController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("/view/{id}/{stepNumber}", name="view", defaults={"stepNumber" = 1})
-     */
+    #[Route('/view/{id}/{stepNumber}', name: 'view', defaults: ['stepNumber' => 1])]
     public function view(Request $request, Tutorial $tutorial, int $stepNumber): Response
     {
         if (!$tutorial->isVisible() && !$this->isGranted('ROLE_SUPER_ADMIN')) {
@@ -52,10 +48,8 @@ final class TutorialController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/create", name="create")
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/create', name: 'create')]
+    #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
         $tutorial = new Tutorial();
@@ -77,10 +71,8 @@ final class TutorialController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/update/{id}", name="update")
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/update/{id}', name: 'update')]
+    #[IsGranted('ROLE_ADMIN')]
     public function update(Tutorial $tutorial, Request $request): Response
     {
         $this->secure($tutorial);
@@ -103,10 +95,8 @@ final class TutorialController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/delete/{id}", name="delete")
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/delete/{id}', name: 'delete')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Tutorial $tutorial): Response
     {
         $this->secure($tutorial);
@@ -136,10 +126,8 @@ final class TutorialController extends AbstractController
         ])], $status);
     }
 
-    /**
-     * @Route("/lock/{id}", name="lock")
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/lock/{id}', name: 'lock')]
+    #[IsGranted('ROLE_ADMIN')]
     public function lock(Tutorial $tutorial): Response
     {
         $this->secure($tutorial);
@@ -154,10 +142,8 @@ final class TutorialController extends AbstractController
         return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
     }
 
-    /**
-     * @Route("/unlock/{id}", name="unlock")
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/unlock/{id}', name: 'unlock')]
+    #[IsGranted('ROLE_ADMIN')]
     public function unlock(Tutorial $tutorial): Response
     {
         $this->secure($tutorial);
@@ -172,10 +158,8 @@ final class TutorialController extends AbstractController
         return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
     }
 
-    /**
-     * @Route("/set-visible/{id}", name="set_visible")
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/set-visible/{id}', name: 'set_visible')]
+    #[IsGranted('ROLE_ADMIN')]
     public function setVisible(Tutorial $tutorial): Response
     {
         $this->secure($tutorial);
@@ -190,10 +174,8 @@ final class TutorialController extends AbstractController
         return $this->redirectToRoute('app_tutorial_view', ['id' => $tutorial->getId()]);
     }
 
-    /**
-     * @Route("/set-invisible/{id}", name="set_invisible")
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route('/set-invisible/{id}', name: 'set_invisible')]
+    #[IsGranted('ROLE_ADMIN')]
     public function setInvisible(Tutorial $tutorial): Response
     {
         $this->secure($tutorial);
