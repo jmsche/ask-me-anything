@@ -22,14 +22,10 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class StepController extends AbstractController
 {
-    private StepRepository $stepRepository;
-
-    private SessionHelper $sessionHelper;
-
-    public function __construct(StepRepository $stepRepository, SessionHelper $sessionHelper)
-    {
-        $this->stepRepository = $stepRepository;
-        $this->sessionHelper = $sessionHelper;
+    public function __construct(
+        private StepRepository $stepRepository,
+        private SessionHelper $sessionHelper,
+    ) {
     }
 
     /**

@@ -20,17 +20,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class CategoryController extends AbstractController
 {
-    private CategoryRepository $categoryRepository;
-
-    private SessionHelper $sessionHelper;
-
-    private TutorialRepository $tutorialRepository;
-
-    public function __construct(CategoryRepository $categoryRepository, SessionHelper $sessionHelper, TutorialRepository $tutorialRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-        $this->sessionHelper = $sessionHelper;
-        $this->tutorialRepository = $tutorialRepository;
+    public function __construct(
+        private CategoryRepository $categoryRepository,
+        private SessionHelper $sessionHelper,
+        private TutorialRepository $tutorialRepository,
+    ) {
     }
 
     /**

@@ -12,12 +12,9 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 final class TutorialRepository extends ServiceEntityRepository
 {
-    private AuthorizationCheckerInterface $authorizationChecker;
-
-    public function __construct(ManagerRegistry $registry, AuthorizationCheckerInterface $authorizationChecker)
+    public function __construct(ManagerRegistry $registry, private AuthorizationCheckerInterface $authorizationChecker)
     {
         parent::__construct($registry, Tutorial::class);
-        $this->authorizationChecker = $authorizationChecker;
     }
 
     public function findByCategory(Category $category): array

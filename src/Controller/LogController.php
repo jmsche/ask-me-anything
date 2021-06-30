@@ -17,14 +17,10 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class LogController extends AbstractController
 {
-    private LogRepository $repository;
-
-    private SessionHelper $sessionHelper;
-
-    public function __construct(LogRepository $repository, SessionHelper $sessionHelper)
-    {
-        $this->repository = $repository;
-        $this->sessionHelper = $sessionHelper;
+    public function __construct(
+        private LogRepository $repository,
+        private SessionHelper $sessionHelper,
+    ) {
     }
 
     /**

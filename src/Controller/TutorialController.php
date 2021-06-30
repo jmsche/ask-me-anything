@@ -21,17 +21,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class TutorialController extends AbstractController
 {
-    private TutorialRepository $tutorialRepository;
-
-    private SessionHelper $sessionHelper;
-
-    private LogRepository $logRepository;
-
-    public function __construct(TutorialRepository $tutorialRepository, SessionHelper $sessionHelper, LogRepository $logRepository)
-    {
-        $this->tutorialRepository = $tutorialRepository;
-        $this->sessionHelper = $sessionHelper;
-        $this->logRepository = $logRepository;
+    public function __construct(
+        private TutorialRepository $tutorialRepository,
+        private SessionHelper $sessionHelper,
+        private LogRepository $logRepository,
+    ) {
     }
 
     /**

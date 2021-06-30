@@ -20,14 +20,10 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class UserController extends AbstractController
 {
-    private UserRepository $userRepository;
-
-    private SessionHelper $sessionHelper;
-
-    public function __construct(UserRepository $userRepository, SessionHelper $sessionHelper)
-    {
-        $this->userRepository = $userRepository;
-        $this->sessionHelper = $sessionHelper;
+    public function __construct(
+        private UserRepository $userRepository,
+        private SessionHelper $sessionHelper,
+    ) {
     }
 
     /**

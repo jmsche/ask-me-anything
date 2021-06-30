@@ -14,12 +14,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class LogRepository extends ServiceEntityRepository
 {
-    private TranslatorInterface $translator;
-
-    public function __construct(ManagerRegistry $registry, TranslatorInterface $translator)
+    public function __construct(ManagerRegistry $registry, private TranslatorInterface $translator)
     {
         parent::__construct($registry, Log::class);
-        $this->translator = $translator;
     }
 
     public function findAll(): array

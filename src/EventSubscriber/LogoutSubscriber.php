@@ -11,11 +11,8 @@ use Symfony\Component\Security\Http\Event\LogoutEvent;
 
 final class LogoutSubscriber implements EventSubscriberInterface
 {
-    private TutorialRepository $tutorialRepository;
-
-    public function __construct(TutorialRepository $tutorialRepository)
+    public function __construct(private TutorialRepository $tutorialRepository)
     {
-        $this->tutorialRepository = $tutorialRepository;
     }
 
     public static function getSubscribedEvents(): array
@@ -29,7 +26,7 @@ final class LogoutSubscriber implements EventSubscriberInterface
     {
         $response = $event->getResponse() ?? new RedirectResponse('/');
         $referer = $event->getRequest()->headers->get('referer');
-        if (false !== strpos($referer, '/tutorial/view')) {
+        if (str_contains($referer, '/tutorial/view')) {
             preg_match('#^https?://([a-z-\.]+)/tutorial/view/([0-9]+)(.+)?$#', $referer, $matches);
             $tutorialId = (int) $matches[2];
             $tutorial = $this->tutorialRepository->find($tutorialId);

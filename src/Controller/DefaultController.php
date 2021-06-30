@@ -16,14 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class DefaultController extends AbstractController
 {
-    private CategoryRepository $categoryRepository;
-
-    private TutorialRepository $tutorialRepository;
-
-    public function __construct(CategoryRepository $categoryRepository, TutorialRepository $tutorialRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-        $this->tutorialRepository = $tutorialRepository;
+    public function __construct(
+        private CategoryRepository $categoryRepository,
+        private TutorialRepository $tutorialRepository,
+    ) {
     }
 
     /**

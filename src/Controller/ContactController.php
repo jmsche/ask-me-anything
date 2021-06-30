@@ -19,14 +19,10 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class ContactController extends AbstractController
 {
-    private ContactMessageRepository $repository;
-
-    private SessionHelper $sessionHelper;
-
-    public function __construct(ContactMessageRepository $repository, SessionHelper $sessionHelper)
-    {
-        $this->repository = $repository;
-        $this->sessionHelper = $sessionHelper;
+    public function __construct(
+        private ContactMessageRepository $repository,
+        private SessionHelper $sessionHelper,
+    ) {
     }
 
     /**
