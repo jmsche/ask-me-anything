@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Maintenance</title>
@@ -12,13 +12,16 @@
                 font-family: Lato, sans-serif;
                 font-weight: 300;
             }
-            #content {
-                padding-top: 70px;
-                text-align: center;
+            body {
+                margin: 0;
+                padding: 0;
             }
-            p {
-                max-width: 400px;
-                margin: auto;
+            #content {
+                text-align: center;
+                display: grid;
+                grid-template-columns: 1fr;
+                align-items: center;
+                height: 100vh;
             }
             p.lower {
                 margin-top: 15px;
@@ -29,8 +32,10 @@
 
     <body>
         <div id="content">
-            <p>Une mise à jour du site est en cours.<br />Il devrait être de retour sous peu.</p>
-            <p class="lower">Vous serez automatiquement redirigé&middot;e.</p>
+            <section>
+                <p>Une mise à jour du site est en cours.<br>Il devrait être de retour sous peu.</p>
+                <p class="lower">Vous serez automatiquement redirigé&middot;e.</p>
+            </section>
         </div>
 
         <script>
