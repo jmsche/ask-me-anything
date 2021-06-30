@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e0f9cbedaabc8dd0071e9f44ec01b5f",
+    "content-hash": "ac61fdf15b35ad96d7e40ff20059e736",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1666,6 +1666,58 @@
             "time": "2020-12-26T14:29:00+00:00"
         },
         {
+            "name": "google/recaptcha",
+            "version": "1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/google/recaptcha.git",
+                "reference": "614f25a9038be4f3f2da7cbfd778dc5b357d2419"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/google/recaptcha/zipball/614f25a9038be4f3f2da7cbfd778dc5b357d2419",
+                "reference": "614f25a9038be4f3f2da7cbfd778dc5b357d2419",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.2.20|^2.15",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^4.8.36|^5.7.27|^6.59|^7.5.11"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ReCaptcha\\": "src/ReCaptcha"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Client library for reCAPTCHA, a free service that protects websites from spam and abuse.",
+            "homepage": "https://www.google.com/recaptcha/",
+            "keywords": [
+                "Abuse",
+                "captcha",
+                "recaptcha",
+                "spam"
+            ],
+            "support": {
+                "forum": "https://groups.google.com/forum/#!forum/recaptcha",
+                "issues": "https://github.com/google/recaptcha/issues",
+                "source": "https://github.com/google/recaptcha"
+            },
+            "time": "2020-03-31T17:50:54+00:00"
+        },
+        {
             "name": "laminas/laminas-code",
             "version": "4.4.0",
             "source": {
@@ -1734,16 +1786,16 @@
         },
         {
             "name": "leapt/core-bundle",
-            "version": "v3.2.1",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leapt/core-bundle.git",
-                "reference": "d54365a9c0246b5e955718d5d1f7059888edff93"
+                "reference": "7314083901e06eca83c54704c88dfbaa49515a66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leapt/core-bundle/zipball/d54365a9c0246b5e955718d5d1f7059888edff93",
-                "reference": "d54365a9c0246b5e955718d5d1f7059888edff93",
+                "url": "https://api.github.com/repos/leapt/core-bundle/zipball/7314083901e06eca83c54704c88dfbaa49515a66",
+                "reference": "7314083901e06eca83c54704c88dfbaa49515a66",
                 "shasum": ""
             },
             "require": {
@@ -1766,6 +1818,7 @@
                 "doctrine/data-fixtures": "^1.0",
                 "fakerphp/faker": "^1.12",
                 "friendsofphp/php-cs-fixer": "^3.0.0",
+                "google/recaptcha": "^1.2",
                 "phpstan/phpstan": "^0.12.59",
                 "symfony/phpunit-bridge": "^4.4 || ^5.0"
             },
@@ -1804,9 +1857,9 @@
             ],
             "support": {
                 "issues": "https://github.com/leapt/core-bundle/issues",
-                "source": "https://github.com/leapt/core-bundle/tree/v3.2.1"
+                "source": "https://github.com/leapt/core-bundle/tree/v3.3.0"
             },
-            "time": "2021-06-29T14:46:40+00:00"
+            "time": "2021-06-30T13:29:21+00:00"
         },
         {
             "name": "matomo/device-detector",

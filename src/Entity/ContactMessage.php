@@ -7,7 +7,7 @@ namespace App\Entity;
 use App\Entity\Traits\CreatedOnTrait;
 use App\Entity\Traits\PrimaryKeyTrait;
 use Doctrine\ORM\Mapping as ORM;
-use Leapt\CoreBundle\Validator\Constraints\Recaptcha;
+use Leapt\CoreBundle\Validator\Constraints\RecaptchaV3;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
@@ -29,7 +29,7 @@ class ContactMessage
     #[ORM\Column(name: '`read`', type: 'boolean')]
     private bool $read = false;
 
-    #[Recaptcha]
+    #[RecaptchaV3]
     private $recaptcha;
 
     public function __construct()
