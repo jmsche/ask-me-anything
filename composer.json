@@ -31,7 +31,6 @@
         "twig/twig": "^3.3.2"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.19.0",
         "hautelook/alice-bundle": "^2.9.0",
         "phpstan/extension-installer": "^1.1.0",
         "phpstan/phpstan": "^0.12.90",
@@ -46,7 +45,8 @@
         "symfony/phpunit-bridge": "5.3.*",
         "symfony/stopwatch": "5.3.*",
         "symfony/var-dumper": "5.3.*",
-        "symfony/web-profiler-bundle": "5.3.*"
+        "symfony/web-profiler-bundle": "5.3.*",
+        "symplify/easy-coding-standard": "^9.3.27"
     },
     "config": {
         "optimize-autoloader": true,
@@ -97,8 +97,8 @@
             "bin/console lint:twig templates --ansi",
             "bin/console lint:yaml config database/fixtures translations --ansi"
         ],
-        "cs:dry": "php-cs-fixer fix --diff --diff-format=udiff --dry-run --no-interaction --ansi",
-        "cs:fix": "php-cs-fixer fix --ansi",
+        "cs:dry": "vendor/bin/ecs --ansi",
+        "cs:fix": "vendor/bin/ecs --fix --ansi",
         "phpcpd": "phpcpd src tests",
         "phpstan": "vendor/bin/phpstan analyse --ansi"
     },

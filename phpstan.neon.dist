@@ -1,10 +1,15 @@
 parameters:
     bootstrapFiles:
         - bin/.phpunit/phpunit-9.2-0/vendor/autoload.php
+        - vendor/symplify/easy-coding-standard/vendor/autoload.php
     paths:
+        - bin/console
+        - config
         - database/migrations
+        - public/index.php
         - src
         - tests
+        - ecs.php
     level: 1
     symfony:
         container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
