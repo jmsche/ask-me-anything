@@ -11,9 +11,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- */
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use PrimaryKeyTrait;
@@ -21,28 +19,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private const ROLE_ADMIN = 'ROLE_ADMIN';
     private const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 
-    /**
-     * @ORM\Column(type="string", length=30, unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Length(max=30)
-     */
+    #[ORM\Column(type: 'string', length: 30, unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 30)]
     private ?string $username = null;
 
-    /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     * @Assert\Choice(callback="getAvailableRoles")
-     */
+    #[ORM\Column(type: 'string')]
+    #[Assert\NotBlank]
+    #[Assert\Choice(callback: 'getAvailableRoles')]
     private ?string $role = null;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    #[ORM\Column(type: 'string')]
     private ?string $password = null;
 
-    /**
-     * @Assert\NotBlank(groups={"Create"})
-     */
+    #[Assert\NotBlank(groups: ['Create'])]
     private ?string $plainPassword = null;
 
     public function getId(): ?int

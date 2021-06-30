@@ -9,10 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 trait WeightTrait
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
-     */
+    #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank]
     private ?int $weight = 1;
 
     public function getWeight(): ?int

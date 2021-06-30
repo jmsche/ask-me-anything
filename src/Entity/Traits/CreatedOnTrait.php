@@ -8,9 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait CreatedOnTrait
 {
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private \DateTime $createdOn;
 
     public function getCreatedOn(): \DateTime

@@ -9,30 +9,22 @@ use App\Entity\Traits\PrimaryKeyTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity()
- */
+#[ORM\Entity]
 class ContactMessage
 {
     use CreatedOnTrait;
     use PrimaryKeyTrait;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
-     * @Assert\Length(max=100)
-     */
+    #[ORM\Column(type: 'string', length: 100)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 100)]
     private ?string $author = null;
 
-    /**
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank()
-     */
+    #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank]
     private ?string $content = null;
 
-    /**
-     * @ORM\Column(name="`read`", type="boolean")
-     */
+    #[ORM\Column(name: '`read`', type: 'boolean')]
     private bool $read = false;
 
     public function __construct()

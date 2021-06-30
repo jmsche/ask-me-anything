@@ -8,28 +8,20 @@ use App\Entity\Traits\PrimaryKeyTrait;
 use App\Entity\Traits\WeightTrait;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity()
- */
+#[ORM\Entity]
 class Step
 {
     use PrimaryKeyTrait;
     use WeightTrait;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $content = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Tutorial::class, inversedBy="steps")
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-     */
+    #[ORM\ManyToOne(targetEntity: Tutorial::class, inversedBy: 'steps')]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private Tutorial $tutorial;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+    #[ORM\Column(type: 'string', nullable: true)]
     private ?string $file = null;
 
     public function __construct(Tutorial $tutorial)
