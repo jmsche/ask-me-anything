@@ -1,8 +1,9 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     form_themes:
-        - 'form/form_layout.html.twig'
+        - '@LeaptCore/Form/form_core_layout.html.twig'
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+        - 'form/form_layout.html.twig'
 
 when@test:
     twig:

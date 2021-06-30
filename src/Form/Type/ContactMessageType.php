@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Type;
 
 use App\Entity\ContactMessage;
+use Leapt\CoreBundle\Form\Type\RecaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,6 +22,9 @@ final class ContactMessageType extends AbstractType
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'contact.create.content',
+            ])
+            ->add('recaptcha', RecaptchaType::class, [
+                'label' => false,
             ])
         ;
     }
