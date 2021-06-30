@@ -16,8 +16,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Tutorial
 {
-    use PrimaryKeyTrait;
     use CreatedOnTrait;
+    use PrimaryKeyTrait;
 
     /**
      * @ORM\Column(type="string")

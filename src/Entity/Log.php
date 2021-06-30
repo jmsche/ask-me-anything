@@ -13,8 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Log
 {
-    use PrimaryKeyTrait;
     use CreatedOnTrait;
+    use PrimaryKeyTrait;
 
     /**
      * @ORM\Column(type="string", nullable=true)

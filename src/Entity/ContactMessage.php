@@ -14,8 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ContactMessage
 {
-    use PrimaryKeyTrait;
     use CreatedOnTrait;
+    use PrimaryKeyTrait;
 
     /**
      * @ORM\Column(type="string", length=100)
