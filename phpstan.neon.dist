@@ -1,6 +1,5 @@
 parameters:
     bootstrapFiles:
-        - bin/.phpunit/phpunit-9.2-0/vendor/autoload.php
         - vendor/symplify/easy-coding-standard/vendor/autoload.php
     paths:
         - bin/console
