@@ -10,8 +10,8 @@ final class SecurityControllerTest extends AbstractControllerTest
 {
     public function testLogin(): void
     {
-        static::$client->request('GET', '/login');
-        static::assertResponseIsSuccessful();
+        self::$client->request('GET', '/login');
+        self::assertResponseIsSuccessful();
 
         // Unknown user
         $this->assertFailedLogin('user', 'user');
@@ -21,35 +21,35 @@ final class SecurityControllerTest extends AbstractControllerTest
 
         // Login ok
         $this->submitLogin('admin', 'admin');
-        static::assertResponseRedirects();
-        static::assertTrue(static::getSecurityDataCollector()->isAuthenticated());
+        self::assertResponseRedirects();
+        self::assertTrue(self::getSecurityDataCollector()->isAuthenticated());
 
         // Already logged in: redirect
-        static::$client->request('GET', '/login');
-        static::assertResponseRedirects('/');
+        self::$client->request('GET', '/login');
+        self::assertResponseRedirects('/');
     }
 
     private function assertFailedLogin(string $username, string $password): void
     {
         $this->submitLogin($username, $password);
-        static::assertResponseRedirects('/login');
-        static::assertFalse(static::getSecurityDataCollector()->isAuthenticated());
+        self::assertResponseRedirects('http://localhost/login');
+        self::assertFalse(self::getSecurityDataCollector()->isAuthenticated());
     }
 
     private function submitLogin(string $username, string $password): void
     {
-        $crawler = static::$client->request('GET', '/login');
-        static::assertResponseIsSuccessful();
-        static::$client->enableProfiler();
+        $crawler = self::$client->request('GET', '/login');
+        self::assertResponseIsSuccessful();
+        self::$client->enableProfiler();
 
         $form = $crawler->selectButton('_login')->form();
         $form['username'] = $username;
         $form['password'] = $password;
-        static::$client->submit($form);
+        self::$client->submit($form);
     }
 
     private static function getSecurityDataCollector(): SecurityDataCollector
     {
-        return static::$client->getProfile()->getCollector('security');
+        return self::$client->getProfile()->getCollector('security');
     }
 }

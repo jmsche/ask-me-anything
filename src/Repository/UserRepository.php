@@ -7,31 +7,28 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 final class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-    private UserPasswordEncoderInterface $passwordEncoder;
-
-    public function __construct(ManagerRegistry $registry, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(ManagerRegistry $registry, private UserPasswordHasherInterface $passwordHasher)
     {
         parent::__construct($registry, User::class);
-        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
-    public function upgradePassword(UserInterface $user, string $newEncodedPassword): void
+    public function upgradePassword(UserInterface $user, string $newHashedPassword): void
     {
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
         }
 
-        $user->setPassword($newEncodedPassword);
+        $user->setPassword($newHashedPassword);
         $this->_em->persist($user);
         $this->_em->flush();
     }
@@ -46,7 +43,7 @@ final class UserRepository extends ServiceEntityRepository implements PasswordUp
     public function save(User $user): void
     {
         if (null !== $user->getPlainPassword()) {
-            $user->setPassword($this->passwordEncoder->encodePassword($user, $user->getPlainPassword()));
+            $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPlainPassword()));
         }
 
         $this->getEntityManager()->persist($user);

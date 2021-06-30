@@ -8,80 +8,80 @@ final class CategoryControllerTest extends AbstractControllerTest
 {
     public function testIndex(): void
     {
-        static::$client->request('GET', '/category');
-        static::assertResponseRedirects('/login');
+        self::$client->request('GET', '/category');
+        self::assertResponseRedirects('http://localhost/login');
 
         $this->loginAsAdmin();
-        static::$client->request('GET', '/category');
-        static::assertResponseStatusCodeSame(403);
+        self::$client->request('GET', '/category');
+        self::assertResponseStatusCodeSame(403);
 
         $this->loginAsSuperAdmin();
-        $crawler = static::$client->request('GET', '/category');
-        static::assertResponseIsSuccessful();
-        static::assertCount(7, $crawler->filter('tbody tr'));
+        $crawler = self::$client->request('GET', '/category');
+        self::assertResponseIsSuccessful();
+        self::assertCount(7, $crawler->filter('tbody tr'));
     }
 
     public function testView(): void
     {
-        $crawler = static::$client->request('GET', '/category/view/internet');
-        static::assertResponseIsSuccessful();
-        static::assertCount(2, $crawler->filter('.card'));
+        $crawler = self::$client->request('GET', '/category/view/internet');
+        self::assertResponseIsSuccessful();
+        self::assertCount(2, $crawler->filter('.card'));
 
-        static::$client->request('GET', '/category/view/unknown');
-        static::assertResponseStatusCodeSame(404);
+        self::$client->request('GET', '/category/view/unknown');
+        self::assertResponseStatusCodeSame(404);
     }
 
     public function testCreate(): void
     {
-        static::$client->request('GET', '/category/create');
-        static::assertResponseRedirects('/login');
+        self::$client->request('GET', '/category/create');
+        self::assertResponseRedirects('http://localhost/login');
 
         $this->loginAsAdmin();
-        static::$client->request('GET', '/category/create');
-        static::assertResponseStatusCodeSame(403);
+        self::$client->request('GET', '/category/create');
+        self::assertResponseStatusCodeSame(403);
 
         $this->loginAsSuperAdmin();
-        static::$client->request('GET', '/category/create');
-        static::assertResponseIsSuccessful();
+        self::$client->request('GET', '/category/create');
+        self::assertResponseIsSuccessful();
     }
 
     public function testUpdate(): void
     {
-        static::$client->request('GET', '/category/update/7');
-        static::assertResponseRedirects('/login');
+        self::$client->request('GET', '/category/update/7');
+        self::assertResponseRedirects('http://localhost/login');
 
         $this->loginAsAdmin();
-        static::$client->request('GET', '/category/update/7');
-        static::assertResponseStatusCodeSame(403);
+        self::$client->request('GET', '/category/update/7');
+        self::assertResponseStatusCodeSame(403);
 
         $this->loginAsSuperAdmin();
-        static::$client->request('GET', '/category/update/100');
-        static::assertResponseStatusCodeSame(404);
+        self::$client->request('GET', '/category/update/100');
+        self::assertResponseStatusCodeSame(404);
 
-        static::$client->request('GET', '/category/update/7');
-        static::assertResponseIsSuccessful();
+        self::$client->request('GET', '/category/update/7');
+        self::assertResponseIsSuccessful();
     }
 
     public function testDelete(): void
     {
-        static::$client->request('GET', '/category/delete/7');
-        static::assertResponseRedirects('/login');
+        self::$client->request('GET', '/category/delete/7');
+        self::assertResponseRedirects('http://localhost/login');
 
         $this->loginAsAdmin();
-        static::$client->request('GET', '/category/delete/7');
-        static::assertResponseStatusCodeSame(403);
+        self::$client->request('GET', '/category/delete/7');
+        self::assertResponseStatusCodeSame(403);
 
         $this->loginAsSuperAdmin();
-        static::$client->request('GET', '/category/delete/100');
-        static::assertResponseStatusCodeSame(404);
+        self::$client->request('GET', '/category/delete/100');
+        self::assertResponseStatusCodeSame(404);
 
-        static::$client->request('GET', '/category/delete/7');
-        static::assertResponseIsSuccessful();
+        self::$client->request('GET', '/category/delete/7');
+        self::assertResponseIsSuccessful();
 
-        static::$client->request('DELETE', '/category/delete/7');
-        static::assertResponseStatusCodeSame(301);
+        self::$client->request('DELETE', '/category/delete/7');
+        self::assertResponseStatusCodeSame(301);
 
-        static::$client->request('DELETE', '/category/delete/1');
-        static::assertResponseStatusCodeSame(400);
+        self::$client->request('DELETE', '/category/delete/1');
+        self::assertResponseStatusCodeSame(400);
     }
 }

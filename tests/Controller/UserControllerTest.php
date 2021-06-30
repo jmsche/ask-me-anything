@@ -8,67 +8,67 @@ final class UserControllerTest extends AbstractControllerTest
 {
     public function testIndex(): void
     {
-        static::$client->request('GET', '/user');
-        static::assertResponseRedirects('/login');
+        self::$client->request('GET', '/user');
+        self::assertResponseRedirects('http://localhost/login');
 
         $this->loginAsAdmin();
-        static::$client->request('GET', '/user');
-        static::assertResponseStatusCodeSame(403);
+        self::$client->request('GET', '/user');
+        self::assertResponseStatusCodeSame(403);
 
         $this->loginAsSuperAdmin();
-        $crawler = static::$client->request('GET', '/user');
-        static::assertResponseIsSuccessful();
-        static::assertCount(3, $crawler->filter('tbody tr'));
+        $crawler = self::$client->request('GET', '/user');
+        self::assertResponseIsSuccessful();
+        self::assertCount(3, $crawler->filter('tbody tr'));
     }
 
     public function testCreate(): void
     {
-        static::$client->request('GET', '/user/create');
-        static::assertResponseRedirects('/login');
+        self::$client->request('GET', '/user/create');
+        self::assertResponseRedirects('http://localhost/login');
 
         $this->loginAsAdmin();
-        static::$client->request('GET', '/user/create');
-        static::assertResponseStatusCodeSame(403);
+        self::$client->request('GET', '/user/create');
+        self::assertResponseStatusCodeSame(403);
 
         $this->loginAsSuperAdmin();
-        static::$client->request('GET', '/user/create');
-        static::assertResponseIsSuccessful();
+        self::$client->request('GET', '/user/create');
+        self::assertResponseIsSuccessful();
     }
 
     public function testUpdate(): void
     {
-        static::$client->request('GET', '/user/update/3');
-        static::assertResponseRedirects('/login');
+        self::$client->request('GET', '/user/update/3');
+        self::assertResponseRedirects('http://localhost/login');
 
         $this->loginAsAdmin();
-        static::$client->request('GET', '/user/update/3');
-        static::assertResponseStatusCodeSame(403);
+        self::$client->request('GET', '/user/update/3');
+        self::assertResponseStatusCodeSame(403);
 
         $this->loginAsSuperAdmin();
-        static::$client->request('GET', '/user/update/100');
-        static::assertResponseStatusCodeSame(404);
+        self::$client->request('GET', '/user/update/100');
+        self::assertResponseStatusCodeSame(404);
 
-        static::$client->request('GET', '/user/update/3');
-        static::assertResponseIsSuccessful();
+        self::$client->request('GET', '/user/update/3');
+        self::assertResponseIsSuccessful();
     }
 
     public function testDelete(): void
     {
-        static::$client->request('GET', '/user/delete/3');
-        static::assertResponseRedirects('/login');
+        self::$client->request('GET', '/user/delete/3');
+        self::assertResponseRedirects('http://localhost/login');
 
         $this->loginAsAdmin();
-        static::$client->request('GET', '/user/delete/3');
-        static::assertResponseStatusCodeSame(403);
+        self::$client->request('GET', '/user/delete/3');
+        self::assertResponseStatusCodeSame(403);
 
         $this->loginAsSuperAdmin();
-        static::$client->request('GET', '/user/delete/100');
-        static::assertResponseStatusCodeSame(404);
+        self::$client->request('GET', '/user/delete/100');
+        self::assertResponseStatusCodeSame(404);
 
-        static::$client->request('GET', '/user/delete/3');
-        static::assertResponseIsSuccessful();
+        self::$client->request('GET', '/user/delete/3');
+        self::assertResponseIsSuccessful();
 
-        static::$client->request('DELETE', '/user/delete/3');
-        static::assertResponseStatusCodeSame(301);
+        self::$client->request('DELETE', '/user/delete/3');
+        self::assertResponseStatusCodeSame(301);
     }
 }

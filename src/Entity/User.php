@@ -7,13 +7,14 @@ namespace App\Entity;
 use App\Entity\Traits\PrimaryKeyTrait;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User implements UserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use PrimaryKeyTrait;
 
@@ -50,6 +51,11 @@ class User implements UserInterface
     }
 
     public function getUsername(): string
+    {
+        return (string) $this->username;
+    }
+
+    public function getUserIdentifier(): string
     {
         return (string) $this->username;
     }

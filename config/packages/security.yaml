@@ -1,8 +1,10 @@
 security:
+    enable_authenticator_manager: true
+
     role_hierarchy:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
-    encoders:
+    password_hashers:
         App\Entity\User:
             algorithm: auto
 
@@ -18,12 +20,13 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
             lazy: true
             provider: app_user_provider
-            guard:
-                authenticators:
-                    - App\Security\AppAuthenticator
+            form_login:
+                login_path: app_security_login
+                check_path: app_security_login
+                username_parameter: username
+                password_parameter: password
             logout:
                 path: app_security_logout
                 # where to redirect after logout

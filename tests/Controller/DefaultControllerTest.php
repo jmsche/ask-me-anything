@@ -8,32 +8,32 @@ final class DefaultControllerTest extends AbstractControllerTest
 {
     public function testIndex(): void
     {
-        static::$client->request('GET', '/');
-        static::assertResponseIsSuccessful();
+        self::$client->request('GET', '/');
+        self::assertResponseIsSuccessful();
     }
 
     public function testSearch(): void
     {
         // Visible tutorial
-        $crawler = static::$client->request('GET', '/search?q=opera');
-        static::assertResponseIsSuccessful();
-        static::assertCount(1, $crawler->filter('.card'));
+        $crawler = self::$client->request('GET', '/search?q=opera');
+        self::assertResponseIsSuccessful();
+        self::assertCount(1, $crawler->filter('.card'));
 
         // Invisible tutorial
-        $crawler = static::$client->request('GET', '/search?q=brave');
-        static::assertResponseIsSuccessful();
-        static::assertCount(0, $crawler->filter('.card'));
+        $crawler = self::$client->request('GET', '/search?q=brave');
+        self::assertResponseIsSuccessful();
+        self::assertCount(0, $crawler->filter('.card'));
 
         // Invisible tutorial as admin
         $this->loginAsAdmin();
-        $crawler = static::$client->request('GET', '/search?q=brave');
-        static::assertResponseIsSuccessful();
-        static::assertCount(0, $crawler->filter('.card'));
+        $crawler = self::$client->request('GET', '/search?q=brave');
+        self::assertResponseIsSuccessful();
+        self::assertCount(0, $crawler->filter('.card'));
 
         // Invisible tutorial as super admin
         $this->loginAsSuperAdmin();
-        $crawler = static::$client->request('GET', '/search?q=brave');
-        static::assertResponseIsSuccessful();
-        static::assertCount(1, $crawler->filter('.card'));
+        $crawler = self::$client->request('GET', '/search?q=brave');
+        self::assertResponseIsSuccessful();
+        self::assertCount(1, $crawler->filter('.card'));
     }
 }

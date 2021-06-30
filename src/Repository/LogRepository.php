@@ -53,13 +53,13 @@ final class LogRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
 
         if (500 < $this->totalLogs()) {
-            $this->getEntityManager()->getConnection()->query('DELETE FROM ' . $this->getClassMetadata()->getTableName() . ' ORDER BY id ASC LIMIT 1;');
+            $this->getEntityManager()->getConnection()->executeQuery('DELETE FROM ' . $this->getClassMetadata()->getTableName() . ' ORDER BY id ASC LIMIT 1;');
         }
     }
 
     public function deleteAllData(): void
     {
-        $this->getEntityManager()->getConnection()->query('DELETE FROM ' . $this->getClassMetadata()->getTableName());
+        $this->getEntityManager()->getConnection()->executeQuery('DELETE FROM ' . $this->getClassMetadata()->getTableName());
     }
 
     private function totalLogs(): int

@@ -24,6 +24,7 @@ yarn-error.log
 ###< leapt/core-bundle ###
 
 /.task
+/public/coverage
 
 ###> phpunit/phpunit ###
 /phpunit.xml

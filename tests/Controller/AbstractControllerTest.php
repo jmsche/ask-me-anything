@@ -14,7 +14,7 @@ abstract class AbstractControllerTest extends WebTestCase
 
     protected function setUp(): void
     {
-        self::$client = static::createClient();
+        self::$client = self::createClient();
     }
 
     protected function loginAsSuperAdmin(): void
@@ -29,8 +29,8 @@ abstract class AbstractControllerTest extends WebTestCase
 
     private function login(int $userId): void
     {
-        $user = static::$client->getContainer()->get('doctrine.orm.entity_manager')
+        $user = self::$client->getContainer()->get('doctrine.orm.entity_manager')
             ->getRepository(User::class)->find($userId);
-        static::$client->loginUser($user);
+        self::$client->loginUser($user);
     }
 }
