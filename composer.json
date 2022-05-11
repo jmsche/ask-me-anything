@@ -1,6 +1,8 @@
 {
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
+    "name": "jmsche/ask-me-anything",
+    "description": "Demo project that allows to create tutorials with steps based on Symfony.",
     "require": {
         "php": "^8.1.5",
         "ext-ctype": "*",

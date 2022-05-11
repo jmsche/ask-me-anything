@@ -1,4 +1,4 @@
 Ask Me Anything
 ===============
 
-Demo project that allows to create tutorials with steps.
+Demo project that allows to create tutorials with steps based on Symfony.
