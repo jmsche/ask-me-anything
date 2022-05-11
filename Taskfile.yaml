@@ -21,7 +21,7 @@ tasks:
     recipes:
         desc: Synchronize recipes for Symfony Flex
         cmds:
-            - symfony composer sync-recipes --force
+            - symfony composer symfony:recipes:update
 
     start:
         desc: Start Symfony server
