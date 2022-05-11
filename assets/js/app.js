@@ -4,7 +4,7 @@ import 'popper.js/dist/umd/popper.js';
 
 import './form-type-slug.js';
 import './modals.js';
-import '../scss/app.scss';
+import '../styles/app.scss';
 
 $(function () {
     $('[data-toggle="tooltip"]').tooltip({ container: 'body' });
