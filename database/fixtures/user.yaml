@@ -1,15 +1,15 @@
 App\Entity\User:
     user__admin:
         username: admin
-        role: ROLE_ADMIN
+        role: <(App\Entity\Enums\Role::Admin)>
         password: <encodePassword(@self, 'admin')>
 
     user__super_admin:
         username: superadmin
-        role: ROLE_SUPER_ADMIN
+        role: <(App\Entity\Enums\Role::SuperAdmin)>
         password: <encodePassword(@self, 'superadmin')>
 
     user__test:
         username: test
-        role: ROLE_ADMIN
+        role: <(App\Entity\Enums\Role::Admin)>
         password: <encodePassword(@self, 'test')>

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Enums\Role;
 use App\Entity\Traits\PrimaryKeyTrait;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
@@ -17,18 +18,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use PrimaryKeyTrait;
 
-    private const ROLE_ADMIN = 'ROLE_ADMIN';
-    private const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
-
     #[ORM\Column(type: Types::STRING, length: 30, unique: true)]
     #[Assert\NotBlank]
     #[Assert\Length(max: 30)]
     private ?string $username = null;
 
-    #[ORM\Column(type: Types::STRING)]
+    #[ORM\Column(type: Types::STRING, enumType: Role::class)]
     #[Assert\NotBlank]
-    #[Assert\Choice(callback: 'getAvailableRoles')]
-    private ?string $role = null;
+    private ?Role $role = null;
 
     #[ORM\Column(type: Types::STRING)]
     private ?string $password = null;
@@ -60,7 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        return [$this->role];
+        return [$this->role->value];
     }
 
     public function getPassword(): string
@@ -75,22 +72,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getRole(): ?Role
     {
         return $this->role;
     }
 
-    public function setRole(?string $role): void
+    public function setRole(?Role $role): void
     {
         $this->role = $role;
-    }
-
-    public static function getAvailableRoles(): array
-    {
-        return [
-            self::ROLE_ADMIN,
-            self::ROLE_SUPER_ADMIN,
-        ];
     }
 
     public function getPlainPassword(): ?string

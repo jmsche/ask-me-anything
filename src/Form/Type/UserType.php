@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form\Type;
 
+use App\Entity\Enums\Role;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,13 +22,11 @@ final class UserType extends AbstractType
             ->add('username', TextType::class, [
                 'label' => 'user.field.username',
             ])
-            ->add('role', ChoiceType::class, [
+            ->add('role', EnumType::class, [
                 'label'        => 'user.field.role',
-                'choices'      => User::getAvailableRoles(),
+                'class'        => Role::class,
                 'placeholder'  => '',
-                'choice_label' => static function (string $role) {
-                    return 'user.choices.role.' . $role;
-                },
+                'choice_label' => fn (Role $role): string => 'user.choices.role.' . $role->value,
             ])
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'user.field.password',

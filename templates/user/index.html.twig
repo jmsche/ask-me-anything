@@ -22,7 +22,7 @@
                 {% for user in users %}
                     <tr>
                         <td>{{ user.username }}</td>
-                        <td>{{ "user.choices.role.#{user.role}"|trans }}</td>
+                        <td>{{ "user.choices.role.#{user.role.value}"|trans }}</td>
                         <td class="text-right">
                             <div class="btn-group btn-group-sm" role="group">
                                 <a href="{{ path('app_user_update', { 'id': user.id }) }}" class="btn btn-secondary">
