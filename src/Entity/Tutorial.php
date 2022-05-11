@@ -8,6 +8,7 @@ use App\Entity\Traits\CreatedOnTrait;
 use App\Entity\Traits\PrimaryKeyTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,12 +18,12 @@ class Tutorial
     use CreatedOnTrait;
     use PrimaryKeyTrait;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Assert\NotBlank]
     #[Assert\Length(max: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
@@ -30,10 +31,10 @@ class Tutorial
     #[Assert\NotBlank]
     private ?Category $category = null;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::BOOLEAN)]
     private bool $locked = false;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: Types::BOOLEAN)]
     private bool $visible = true;
 
     #[ORM\OneToMany(mappedBy: 'tutorial', targetEntity: Step::class)]

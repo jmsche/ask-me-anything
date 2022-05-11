@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\PrimaryKeyTrait;
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -19,17 +20,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private const ROLE_ADMIN = 'ROLE_ADMIN';
     private const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 
-    #[ORM\Column(type: 'string', length: 30, unique: true)]
+    #[ORM\Column(type: Types::STRING, length: 30, unique: true)]
     #[Assert\NotBlank]
     #[Assert\Length(max: 30)]
     private ?string $username = null;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     #[Assert\NotBlank]
     #[Assert\Choice(callback: 'getAvailableRoles')]
     private ?string $role = null;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: Types::STRING)]
     private ?string $password = null;
 
     #[Assert\NotBlank(groups: ['Create'])]

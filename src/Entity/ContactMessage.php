@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\CreatedOnTrait;
 use App\Entity\Traits\PrimaryKeyTrait;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Leapt\CoreBundle\Validator\Constraints\RecaptchaV3;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -16,17 +17,17 @@ class ContactMessage
     use CreatedOnTrait;
     use PrimaryKeyTrait;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: Types::STRING, length: 100)]
     #[Assert\NotBlank]
     #[Assert\Length(max: 100)]
     private ?string $author = null;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 10)]
     private ?string $content = null;
 
-    #[ORM\Column(name: '`read`', type: 'boolean')]
+    #[ORM\Column(name: '`read`', type: Types::BOOLEAN)]
     private bool $read = false;
 
     #[RecaptchaV3]
