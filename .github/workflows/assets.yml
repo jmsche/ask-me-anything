@@ -1,0 +1,35 @@
+name: Build assets
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  yarn:
+    name: Yarn
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: yarn-cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-cache-node-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-cache-node-modules-
+      - name: Yarn install
+        if: steps.yarn-cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn install
+      - name: Yarn build
+        run: yarn run encore production
+      - name: Create directory for artifact
+        run: |
+          mkdir -p artifact/public/build
+          cp -R public/build/. artifact/public/build/.
+      - name: Archive production artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: artifact
