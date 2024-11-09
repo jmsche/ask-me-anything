@@ -8,12 +8,12 @@ use App\Entity\Tutorial;
 use App\Form\Type\TutorialType;
 use App\Repository\LogRepository;
 use App\Repository\TutorialRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Translation\TranslatableMessage;
 
 #[Route('/tutorial', name: 'app_tutorial_')]
