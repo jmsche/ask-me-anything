@@ -20,8 +20,7 @@ final class UserController extends AbstractController
 {
     public function __construct(
         private UserRepository $userRepository,
-    ) {
-    }
+    ) {}
 
     #[Route('', name: 'index')]
     public function index(): Response

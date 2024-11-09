@@ -21,8 +21,7 @@ final class CategoryController extends AbstractController
     public function __construct(
         private CategoryRepository $categoryRepository,
         private TutorialRepository $tutorialRepository,
-    ) {
-    }
+    ) {}
 
     #[Route('', name: 'index')]
     #[IsGranted('ROLE_SUPER_ADMIN')]

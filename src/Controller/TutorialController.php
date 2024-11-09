@@ -22,8 +22,7 @@ final class TutorialController extends AbstractController
     public function __construct(
         private TutorialRepository $tutorialRepository,
         private LogRepository $logRepository,
-    ) {
-    }
+    ) {}
 
     #[Route('/view/{id}/{stepNumber}', name: 'view', defaults: ['stepNumber' => 1])]
     public function view(Request $request, Tutorial $tutorial, int $stepNumber): Response

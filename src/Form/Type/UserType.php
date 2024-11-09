@@ -26,7 +26,7 @@ final class UserType extends AbstractType
                 'label'        => 'user.field.role',
                 'class'        => Role::class,
                 'placeholder'  => '',
-                'choice_label' => fn (Role $role): string => 'user.choices.role.' . $role->value,
+                'choice_label' => fn(Role $role): string => 'user.choices.role.' . $role->value,
             ])
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'user.field.password',

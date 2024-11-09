@@ -25,13 +25,15 @@ tasks:
 
     start:
         desc: Start Symfony server
-        cmds:
-            - symfony serve -d
+        cmd: symfony serve
 
     stop:
         desc: Stop Symfony server
-        cmds:
-            - symfony server:stop
+        cmd: symfony server:stop
+
+    open:
+        desc: Open project in a browser
+        cmd: symfony open:local
 
     test:
         desc: Run tests

@@ -22,8 +22,7 @@ final class StepController extends AbstractController
 {
     public function __construct(
         private StepRepository $stepRepository,
-    ) {
-    }
+    ) {}
 
     #[Route('/create/{id}', name: 'create')]
     public function create(Request $request, Tutorial $tutorial): Response
@@ -163,7 +162,7 @@ final class StepController extends AbstractController
             }
             $uploadsDir = __DIR__ . '/../../public/uploads/';
             if (!is_dir($uploadsDir) && !mkdir($uploadsDir, 0777, true) && !is_dir($uploadsDir)) {
-                throw new \RuntimeException(sprintf('Directory "%s" was not created', $uploadsDir));
+                throw new \RuntimeException(\sprintf('Directory "%s" was not created', $uploadsDir));
             }
 
             $file = $uploadedFile->move($uploadsDir, uniqid('', false) . '.' . $uploadedFile->guessExtension());

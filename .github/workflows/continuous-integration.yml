@@ -11,13 +11,13 @@ on:
 jobs:
   phpunit:
     name: PHPUnit (PHP ${{ matrix.php-version }})
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     env:
       DATABASE_URL: 'mysql://root:root@127.0.0.1:3306/ask_me_anything'
 
     services:
       mysql:
-        image: mariadb:10.3
+        image: mariadb:10.5
         env:
           MYSQL_ROOT_PASSWORD: root
         ports:
@@ -27,14 +27,14 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - '8.1'
+          - '8.3'
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache node_modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: yarn-cache-node-modules
         with:
           path: node_modules
@@ -58,7 +58,7 @@ jobs:
         run: composer validate
 
       - name: Install Composer dependencies
-        uses: ramsey/composer-install@v2
+        uses: ramsey/composer-install@v3
 
       - name: Load Doctrine fixtures
         run: |

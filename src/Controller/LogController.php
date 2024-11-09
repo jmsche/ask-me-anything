@@ -17,8 +17,7 @@ final class LogController extends AbstractController
 {
     public function __construct(
         private LogRepository $repository,
-    ) {
-    }
+    ) {}
 
     #[Route('', name: 'index')]
     public function index(): Response

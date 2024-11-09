@@ -1,0 +1,9 @@
+proxy:
+    domains:
+        - ask-me-anything
+
+http:
+    daemon: true
+
+workers:
+    docker_compose: ~

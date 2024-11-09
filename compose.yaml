@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    database:
+        image: mariadb:10.5
+        restart: always
+        environment:
+            MARIADB_ROOT_PASSWORD: root
+            MARIADB_DATABASE: ask_me_anything
+        ports:
+            - 3306

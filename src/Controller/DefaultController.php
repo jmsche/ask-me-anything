@@ -17,8 +17,7 @@ final class DefaultController extends AbstractController
     public function __construct(
         private CategoryRepository $categoryRepository,
         private TutorialRepository $tutorialRepository,
-    ) {
-    }
+    ) {}
 
     #[Route('', name: 'index')]
     public function index(): Response

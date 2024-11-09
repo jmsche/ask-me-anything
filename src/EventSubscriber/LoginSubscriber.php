@@ -14,9 +14,7 @@ final class LoginSubscriber implements EventSubscriberInterface
 {
     use TargetPathTrait;
 
-    public function __construct(private RequestStack $requestStack)
-    {
-    }
+    public function __construct(private RequestStack $requestStack) {}
 
     public static function getSubscribedEvents(): array
     {

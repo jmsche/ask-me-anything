@@ -19,8 +19,7 @@ final class ContactController extends AbstractController
 {
     public function __construct(
         private ContactMessageRepository $repository,
-    ) {
-    }
+    ) {}
 
     #[Route('', name: 'index')]
     #[IsGranted('ROLE_SUPER_ADMIN')]

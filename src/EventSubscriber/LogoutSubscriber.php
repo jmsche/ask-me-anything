@@ -11,9 +11,7 @@ use Symfony\Component\Security\Http\Event\LogoutEvent;
 
 final class LogoutSubscriber implements EventSubscriberInterface
 {
-    public function __construct(private TutorialRepository $tutorialRepository)
-    {
-    }
+    public function __construct(private TutorialRepository $tutorialRepository) {}
 
     public static function getSubscribedEvents(): array
     {
