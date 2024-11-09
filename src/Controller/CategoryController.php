@@ -35,9 +35,9 @@ final class CategoryController extends AbstractController
 
     #[Route('/view/{slug}', name: 'view')]
     public function view(
-        #[MapEntity(mapping: ['slug' => 'slug'])] Category $category,
-    ): Response
-    {
+        #[MapEntity(mapping: ['slug' => 'slug'])]
+        Category $category,
+    ): Response {
         return $this->render('category/view.html.twig', [
             'categories' => $this->categoryRepository->findAll(),
             'category'   => $category,
