@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Controller;
 
-final class UserControllerTest extends AbstractControllerTest
+final class UserControllerTest extends AbstractControllerTestCase
 {
     public function testIndex(): void
     {

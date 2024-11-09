@@ -41,7 +41,7 @@
         "phpstan/phpstan-doctrine": "^1.5.5",
         "phpstan/phpstan-phpunit": "^1.4.0",
         "phpstan/phpstan-symfony": "^1.4.12",
-        "phpunit/phpunit": "^9.6.21",
+        "phpunit/phpunit": "^11.4.3",
         "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "7.1.*",
         "symfony/css-selector": "7.1.*",

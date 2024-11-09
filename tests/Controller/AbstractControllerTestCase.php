@@ -8,7 +8,7 @@ use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-abstract class AbstractControllerTest extends WebTestCase
+abstract class AbstractControllerTestCase extends WebTestCase
 {
     protected static KernelBrowser $client;
 

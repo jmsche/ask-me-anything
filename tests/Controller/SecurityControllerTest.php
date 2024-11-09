@@ -6,7 +6,7 @@ namespace App\Tests\Controller;
 
 use Symfony\Bundle\SecurityBundle\DataCollector\SecurityDataCollector;
 
-final class SecurityControllerTest extends AbstractControllerTest
+final class SecurityControllerTest extends AbstractControllerTestCase
 {
     public function testLogin(): void
     {
