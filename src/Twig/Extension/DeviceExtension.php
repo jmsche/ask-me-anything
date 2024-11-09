@@ -10,11 +10,8 @@ use Twig\TwigFunction;
 
 final class DeviceExtension extends AbstractExtension
 {
-    private DeviceDetector $deviceDetector;
-
-    public function __construct()
+    public function __construct(private DeviceDetector $deviceDetector)
     {
-        $this->deviceDetector = new DeviceDetector();
     }
 
     public function getFunctions(): array

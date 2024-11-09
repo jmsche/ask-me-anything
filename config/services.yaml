@@ -22,3 +22,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    device_detector_cache:
+        class: DeviceDetector\Cache\PSR6Bridge
+        arguments:
+            - '@device_detector.cache'
+
+    DeviceDetector\DeviceDetector:
+        calls:
+            - [setCache, ['@device_detector_cache']]
