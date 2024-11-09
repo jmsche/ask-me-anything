@@ -8,6 +8,7 @@ use App\Entity\Category;
 use App\Form\Type\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Repository\TutorialRepository;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +34,9 @@ final class CategoryController extends AbstractController
     }
 
     #[Route('/view/{slug}', name: 'view')]
-    public function view(Category $category): Response
+    public function view(
+        #[MapEntity(mapping: ['slug' => 'slug'])] Category $category,
+    ): Response
     {
         return $this->render('category/view.html.twig', [
             'categories' => $this->categoryRepository->findAll(),
