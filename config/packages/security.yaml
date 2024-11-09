@@ -5,12 +5,9 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
     password_hashers:
-        App\Entity\User:
-            algorithm: auto
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
                 class: App\Entity\User
