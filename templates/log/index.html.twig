@@ -37,16 +37,16 @@
 
                             {% if device.isBot %}
                                 <i class="fas fa-fw fa-robot"></i>
-                                {{ device.bot.name }}
-                                {% if device.bot.category is not empty %}
-                                    ({{ device.bot.category }})
+                                {{ device.botName }}
+                                {% if device.botCategory is not empty %}
+                                    ({{ device.botCategory }})
                                 {% endif %}
                             {% else %}
-                                {% if device.os is not null %}
-                                    {{ os_icon(device.os.name) }}
-                                    {{ device.os.name }}
-                                    {{ device.os.version }}
-                                    {{ device.os.platform }}
+                                {% if device.osName is not null %}
+                                    {{ os_icon(device.osName) }}
+                                    {{ device.osName }}
+                                    {{ device.osVersion }}
+                                    {{ device.osPlatform }}
                                 {% endif %}
                                 <br />
                                 {% if device.deviceName is not empty %}
@@ -55,10 +55,10 @@
                                 {% endif %}
                                 {% if device.brandName is not empty or device.model is not empty %}({{ device.brandName }} {{ device.model }}){% endif %}
                                 <br />
-                                {% if device.client is not null %}
-                                    {{ browser_icon(device.client.name) }}
-                                    {{ device.client.name }}
-                                    {{ device.client.version }}
+                                {% if device.clientName is not null %}
+                                    {{ browser_icon(device.clientName) }}
+                                    {{ device.clientName }}
+                                    {{ device.clientVersion }}
                                 {% endif %}
                             {% endif %}
                         </td>
