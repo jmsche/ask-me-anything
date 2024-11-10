@@ -1,9 +1,10 @@
 twig:
     file_name_pattern: '*.twig'
     form_themes:
+        - '@LeaptSlugType/bootstrap4_layout.html.twig'
         - '@LeaptCore/Form/bootstrap_4_layout.html.twig'
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
-        - 'form/form_layout.html.twig'
+        - 'bootstrap_4_layout.html.twig'
 
 when@test:
     twig:

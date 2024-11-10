@@ -1,6 +1,7 @@
 {
     "devDependencies": {
         "@hotwired/stimulus": "^3.0.1",
+        "@leapt/slug-type-bundle": "file:vendor/leapt/slug-type-bundle/assets",
         "@symfony/stimulus-bridge": "^3.1.0",
         "@symfony/webpack-encore": "^2.1.0",
         "core-js": "^3.22.5",

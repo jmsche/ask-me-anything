@@ -1,4 +1,14 @@
 {
-    "controllers": [],
+    "controllers": {
+        "@leapt/slug-type-bundle": {
+            "slug": {
+                "enabled": true,
+                "fetch": "eager",
+                "autoimport": {
+                    "@leapt/slug-type-bundle/dist/style.css": true
+                }
+            }
+        }
+    },
     "entrypoints": []
 }

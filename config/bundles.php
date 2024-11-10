@@ -18,4 +18,6 @@ return [
     Leapt\CoreBundle\LeaptCoreBundle::class => ['all' => true],
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
     FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
+    Symfony\UX\StimulusBundle\StimulusBundle::class => ['all' => true],
+    Leapt\SlugTypeBundle\LeaptSlugTypeBundle::class => ['all' => true],
 ];
