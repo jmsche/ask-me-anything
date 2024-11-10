@@ -21,7 +21,7 @@ jobs:
             ${{ runner.os }}-yarn-cache-node-modules-
       - name: Yarn install
         if: steps.yarn-cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn install
+        run: yarn install --force
       - name: Yarn build
         run: yarn run encore production
       - name: Create directory for artifact
